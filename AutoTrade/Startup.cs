@@ -32,7 +32,7 @@ namespace AutoTrade
 			// In production, the Angular files will be served from this directory
 			services.AddSpaStaticFiles(configuration =>
 			{
-				configuration.RootPath = "ClientApp/dist";
+				configuration.RootPath = "App/dist";
 			});
 
 			services.Configure<SecurityStampValidatorOptions>(options =>
@@ -96,7 +96,7 @@ namespace AutoTrade
 
 			app.UseSpa(spa =>
 			{
-				spa.Options.SourcePath = "ClientApp";
+				spa.Options.SourcePath = "App";
 
 				if (env.IsDevelopment())
 				{
