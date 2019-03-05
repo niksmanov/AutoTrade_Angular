@@ -7,12 +7,18 @@ import { RouterModule } from '@angular/router';
 import { AppComponent } from './app.component';
 import { NavMenuComponent } from './nav-menu/nav-menu.component';
 import { HomeComponent } from './home/home.component';
+import { NotFoundComponent } from './not-found/not-found.component';
+
+//Account
+import { LoginComponent } from './account/login/login.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     NavMenuComponent,
-    HomeComponent
+    HomeComponent,
+    LoginComponent,
+    NotFoundComponent,
   ],
   imports: [
     BrowserModule,
@@ -20,6 +26,10 @@ import { HomeComponent } from './home/home.component';
     FormsModule,
     RouterModule.forRoot([
       { path: '', component: HomeComponent, pathMatch: 'full' },
+
+
+
+      { path: '**', component: NotFoundComponent },
     ])
   ],
   providers: [],
