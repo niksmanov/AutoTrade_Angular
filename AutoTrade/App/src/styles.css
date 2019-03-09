@@ -1,11 +1,5 @@
-@media (max-width: 767px) {
-  .vehicle-list-entity {
-    width: 100% !important;
-  }
-}
-
 body {
-  background-color: #f7f7f7;
+  background-color: #f7f7f7 !important;
 }
 
 u {
@@ -58,4 +52,10 @@ img {
 
 .alert {
   margin: 10px;
+}
+
+@media (max-width: 767px) {
+  .vehicle-list-entity {
+    width: 100% !important;
+  }
 }

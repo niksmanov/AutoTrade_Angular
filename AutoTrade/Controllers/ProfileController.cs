@@ -14,6 +14,7 @@ namespace AutoTrade.Controllers
 {
 	[Authorize]
 	[Route("[controller]")]
+	[ApiController]
 	public class ProfileController : Controller
 	{
 		private readonly UserManager<User> _userManager;

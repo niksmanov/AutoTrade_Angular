@@ -1,13 +1,13 @@
 <div>
-  <form #loginForm="ngForm" (ngSubmit)="onSubmit()">
+  <form #registerForm="ngForm" (ngSubmit)="onSubmit()">
     <label>Email:</label>
     <input [(ngModel)]="email" name="email" type="email" autoComplete="off" required class="form-control spacer" email />
+    <label>Username:</label>
+    <input [(ngModel)]="username" name="username" type="text" autoComplete="off" required class="form-control spacer" />
     <label>Password:</label>
     <input [(ngModel)]="password" name="password" type="password" required class="form-control spacer" />
-    <label class="spacer">Remember me: &nbsp;</label>
-    <input [(ngModel)]="rememberMe" type="checkbox" name="rememberMe" />
     <br />
-    <button type="submit" class="btn btn-primary spacer" [disabled]="!loginForm.form.valid">Submit</button>
+    <button type="submit" class="btn btn-primary spacer" [disabled]="!registerForm.form.valid">Submit</button>
   </form>
 
   <app-error [errors]="errors"></app-error>

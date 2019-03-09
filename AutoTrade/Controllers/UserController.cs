@@ -15,6 +15,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace AutoTrade.Controllers
 {
 	[Route("[controller]")]
+	[ApiController]
 	public class UserController : Controller
 	{
 		private readonly SignInManager<User> _signInManager;

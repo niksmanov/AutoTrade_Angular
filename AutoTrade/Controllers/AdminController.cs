@@ -13,6 +13,7 @@ namespace AutoTrade.Controllers
 {
 	[Authorize(Roles = "Admin")]
 	[Route("[controller]")]
+	[ApiController]
 	public class AdminController : Controller
 	{
 		private readonly IUserService _userService;

@@ -9,6 +9,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace AutoTrade.Controllers
 {
 	[Route("[controller]")]
+	[ApiController]
 	public class CommonController : Controller
 	{
 		private readonly ICommonService _commonService;

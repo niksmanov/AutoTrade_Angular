@@ -4,15 +4,15 @@ import { Router } from '@angular/router';
 import * as Interfaces from '../../app.interfaces';
 
 @Component({
-  selector: 'app-login',
-  templateUrl: './login.component.html',
+  selector: 'app-register',
+  templateUrl: './register.component.html',
 })
-export class LoginComponent {
+export class RegisterComponent {
   public errors: string[];
 
   public email: string;
+  public username: string;
   public password: string;
-  public rememberMe: boolean = true;
 
   constructor(
     private http: HttpClient,
@@ -20,11 +20,11 @@ export class LoginComponent {
   ) { }
 
   onSubmit() {
-    this.http.post<Interfaces.ResponseModel>('/user/login',
+    this.http.post<Interfaces.ResponseModel>('/user/register',
       {
         email: this.email,
+        username: this.username,
         password: this.password,
-        rememberMe: this.rememberMe,
       }).subscribe(r => {
         if (r.succeeded) {
           this.router.navigateByUrl('/');
@@ -34,4 +34,3 @@ export class LoginComponent {
       })
   }
 }
-

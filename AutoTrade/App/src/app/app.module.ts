@@ -8,9 +8,13 @@ import { AppComponent } from './app.component';
 import { NavMenuComponent } from './nav-menu/nav-menu.component';
 import { HomeComponent } from './home/home.component';
 import { NotFoundComponent } from './not-found/not-found.component';
+import { ErrorComponent } from './shared/error.component';
 
 //Account
 import { LoginComponent } from './account/login/login.component';
+import { RegisterComponent } from './account/register/register.component';
+
+
 
 @NgModule({
   declarations: [
@@ -19,6 +23,8 @@ import { LoginComponent } from './account/login/login.component';
     HomeComponent,
     LoginComponent,
     NotFoundComponent,
+    ErrorComponent,
+    RegisterComponent,
   ],
   imports: [
     BrowserModule,
@@ -26,7 +32,8 @@ import { LoginComponent } from './account/login/login.component';
     FormsModule,
     RouterModule.forRoot([
       { path: '', component: HomeComponent, pathMatch: 'full' },
-
+      { path: 'login', component: LoginComponent },
+      { path: 'register', component: RegisterComponent },
 
 
       { path: '**', component: NotFoundComponent },
