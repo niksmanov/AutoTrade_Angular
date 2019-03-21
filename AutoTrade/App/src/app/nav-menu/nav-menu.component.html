@@ -24,36 +24,42 @@
             <span class='glyphicon glyphicon-search'></span> Search Vehicle
           </a>
         </li>
-        <li [routerLinkActive]='["link-active"]'>
-          <a [routerLink]='["/profile/home"]'>
-            <span class='glyphicon glyphicon-user'></span> Profile
-          </a>
-        </li>
-        <li [routerLinkActive]='["link-active"]'>
+        <li *ngIf="isAdmin" [routerLinkActive]='["link-active"]'>
           <a [routerLink]='["/admin/users"]'>
             <span class='glyphicon glyphicon-warning-sign'></span> Administration
           </a>
         </li>
-        <li [routerLinkActive]='["link-active"]'>
-          <a [routerLink]='["/logout"]'>
-            <span class='glyphicon glyphicon-off'></span> Logout
-          </a>
-        </li>
-        <li [routerLinkActive]='["link-active"]'>
-          <a [routerLink]='["/register"]'>
-            <span class='glyphicon glyphicon-th-list'></span> Register
-          </a>
-        </li>
-        <li [routerLinkActive]='["link-active"]'>
-          <a [routerLink]='["/login"]'>
-            <span class='glyphicon glyphicon-off'></span> Login
-          </a>
-        </li>
-        <li [routerLinkActive]='["link-active"]'>
-          <a [routerLink]='["/forgotpassword"]'>
-            <span class='glyphicon glyphicon-refresh'></span> Forgot Password
-          </a>
-        </li>
+
+        <ng-container *ngIf="isAuth">
+          <li *ngIf="isAuth" [routerLinkActive]='["link-active"]'>
+            <a [routerLink]='["/profile/home"]'>
+              <span class='glyphicon glyphicon-user'></span> Profile
+            </a>
+          </li>
+          <li [routerLinkActive]='["link-active"]'>
+            <a [routerLink]='["/logout"]'>
+              <span class='glyphicon glyphicon-off'></span> Logout
+            </a>
+          </li>
+        </ng-container>
+
+        <ng-container *ngIf="!isAuth">
+          <li [routerLinkActive]='["link-active"]'>
+            <a [routerLink]='["/register"]'>
+              <span class='glyphicon glyphicon-th-list'></span> Register
+            </a>
+          </li>
+          <li [routerLinkActive]='["link-active"]'>
+            <a [routerLink]='["/login"]'>
+              <span class='glyphicon glyphicon-off'></span> Login
+            </a>
+          </li>
+          <li [routerLinkActive]='["link-active"]'>
+            <a [routerLink]='["/forgotpassword"]'>
+              <span class='glyphicon glyphicon-refresh'></span> Forgot Password
+            </a>
+          </li>
+        </ng-container>
       </ul>
     </div>
   </div>

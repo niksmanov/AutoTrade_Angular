@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
-import * as Interfaces from '../../app.interfaces';
+import { ResponseModel } from '../../app.interfaces';
 
 @Component({
   selector: 'app-login',
@@ -20,7 +20,7 @@ export class LoginComponent {
   ) { }
 
   onSubmit() {
-    this.http.post<Interfaces.ResponseModel>('/user/login',
+    this.http.post<ResponseModel>('/user/login',
       {
         email: this.email,
         password: this.password,
