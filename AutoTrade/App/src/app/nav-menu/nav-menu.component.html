@@ -37,7 +37,7 @@
             </a>
           </li>
           <li [routerLinkActive]='["link-active"]'>
-            <a [routerLink]='["/logout"]'>
+            <a (click)="logOut()">
               <span class='glyphicon glyphicon-off'></span> Logout
             </a>
           </li>

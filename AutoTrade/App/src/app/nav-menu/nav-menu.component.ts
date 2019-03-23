@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { Router } from '@angular/router';
 import { UserService } from '../services/user.service';
-import { User } from '../app.interfaces';
 
 @Component({
   selector: 'app-nav-menu',
@@ -9,15 +10,27 @@ import { User } from '../app.interfaces';
 })
 
 export class NavMenuComponent implements OnInit {
-  constructor(private userService: UserService) { }
+  constructor(
+    private http: HttpClient,
+    private router: Router,
+    private userService: UserService) { }
 
-  public isAuth = false;
-  public isAdmin = false;
-  public user: User;
+  public isAuth: boolean = false;
+  public isAdmin: boolean = false;
 
   ngOnInit() {
-    this.user = this.userService.getUser();
-    this.isAuth = this.userService.isAuth();
-    this.isAdmin = this.isAuth && this.user.isAdmin;
+    this.userService.getUser()
+      .subscribe(user => {
+        if (user) {
+          this.isAuth = user !== null;
+          this.isAdmin = this.isAuth && user.isAdmin;
+        }
+      });
+  }
+
+  logOut() {
+    this.http.get('user/logout')
+      .toPromise()
+      .then(r => this.router.navigateByUrl('/'));
   }
 }
