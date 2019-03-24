@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Router } from '@angular/router';
 import { ResponseModel } from '../../app.interfaces';
 
 @Component({
@@ -16,7 +15,6 @@ export class RegisterComponent {
 
   constructor(
     private http: HttpClient,
-    private router: Router,
   ) { }
 
   onSubmit() {
@@ -27,7 +25,7 @@ export class RegisterComponent {
         password: this.password,
       }).subscribe(r => {
         if (r.succeeded) {
-          this.router.navigateByUrl('/');
+          window.location.href = '/';
         } else {
           this.errors = r.errors;
         }

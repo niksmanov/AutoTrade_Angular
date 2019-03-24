@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { Store } from '@ngrx/store';
 import { HttpClient } from '@angular/common/http';
-import { Router } from '@angular/router';
 import { UserService } from '../services/user.service';
+import * as fromRoot from '../app.reducer';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-nav-menu',
@@ -12,25 +14,22 @@ import { UserService } from '../services/user.service';
 export class NavMenuComponent implements OnInit {
   constructor(
     private http: HttpClient,
-    private router: Router,
-    private userService: UserService) { }
+    private userService: UserService,
+    private store: Store<fromRoot.State>,
+  ) { }
 
-  public isAuth: boolean = false;
-  public isAdmin: boolean = false;
+  public isAuth$: Observable<boolean>;
+  public isAdmin$: Observable<boolean>;
 
   ngOnInit() {
-    this.userService.getUser()
-      .subscribe(user => {
-        if (user) {
-          this.isAuth = user !== null;
-          this.isAdmin = this.isAuth && user.isAdmin;
-        }
-      });
+    this.isAuth$ = this.store.select(fromRoot.getIsAuth);
+    this.isAdmin$ = this.store.select(fromRoot.getIsAdmin);
+    this.userService.getUser();
   }
 
   logOut() {
     this.http.get('user/logout')
       .toPromise()
-      .then(r => this.router.navigateByUrl('/'));
+      .then(r => window.location.href = '/');
   }
 }

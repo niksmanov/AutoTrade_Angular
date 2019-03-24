@@ -4,7 +4,6 @@ import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
-import { AccountModule } from './account/account.module';
 import { StoreModule } from '@ngrx/store';
 import { reducers } from './app.reducer';
 
@@ -33,8 +32,7 @@ import { CommonService } from './services/common.service';
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    AccountModule,
-    //StoreModule.forRoot(reducers),
+    StoreModule.forRoot(reducers),
   ],
   providers: [UserService, VehicleService, CommonService],
   bootstrap: [AppComponent]

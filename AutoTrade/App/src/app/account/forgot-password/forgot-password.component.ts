@@ -3,24 +3,20 @@ import { HttpClient } from '@angular/common/http';
 import { ResponseModel } from '../../app.interfaces';
 
 @Component({
-  selector: 'app-login',
-  templateUrl: './login.component.html',
+  selector: 'app-forgot-password',
+  templateUrl: './forgot-password.component.html',
 })
-export class LoginComponent {
+export class ForgotPasswordComponent {
   public errors: string[];
 
   public email: string;
-  public password: string;
-  public rememberMe: boolean = true;
 
   constructor(private http: HttpClient) { }
 
   onSubmit() {
-    this.http.post<ResponseModel>('/user/login',
+    this.http.post<ResponseModel>('/user/forgotpassword',
       {
         email: this.email,
-        password: this.password,
-        rememberMe: this.rememberMe,
       }).subscribe(r => {
         if (r.succeeded) {
           window.location.href = '/';
@@ -30,4 +26,3 @@ export class LoginComponent {
       })
   }
 }
-

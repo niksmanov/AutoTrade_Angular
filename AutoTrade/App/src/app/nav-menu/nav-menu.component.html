@@ -24,15 +24,15 @@
             <span class='glyphicon glyphicon-search'></span> Search Vehicle
           </a>
         </li>
-        <li *ngIf="isAdmin" [routerLinkActive]='["link-active"]'>
-          <a [routerLink]='["/admin/users"]'>
+        <li *ngIf="(isAdmin$ | async)" [routerLinkActive]='["link-active"]'>
+          <a [routerLink]='["/admin"]'>
             <span class='glyphicon glyphicon-warning-sign'></span> Administration
           </a>
         </li>
 
-        <ng-container *ngIf="isAuth">
-          <li *ngIf="isAuth" [routerLinkActive]='["link-active"]'>
-            <a [routerLink]='["/profile/home"]'>
+        <ng-container *ngIf="(isAuth$ | async)">
+          <li [routerLinkActive]='["link-active"]'>
+            <a [routerLink]='["/profile"]'>
               <span class='glyphicon glyphicon-user'></span> Profile
             </a>
           </li>
@@ -43,7 +43,7 @@
           </li>
         </ng-container>
 
-        <ng-container *ngIf="!isAuth">
+        <ng-container *ngIf="!(isAuth$ | async)">
           <li [routerLinkActive]='["link-active"]'>
             <a [routerLink]='["/register"]'>
               <span class='glyphicon glyphicon-th-list'></span> Register

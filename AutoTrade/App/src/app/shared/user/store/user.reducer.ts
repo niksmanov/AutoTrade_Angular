@@ -1,14 +1,15 @@
 import * as actions from './user.actions';
+import { User } from '../../../app.interfaces';
 
-export interface UserState {
+export interface State {
   isLoading: boolean;
-  user: Object;
-  users: Object[];
+  user: User;
+  users: User[];
 }
 
-const initialState: UserState = {
+const initialState: State = {
   isLoading: true,
-  user: {}, 
+  user: null, 
   users: [], 
 };
 
@@ -33,3 +34,7 @@ export function userReducer(state = initialState, action: actions.UserActions) {
     default: return state;
   }
 };
+
+export const getIsAuth = (state: State) => state.user !== null;
+export const getIsAdmin = (state: State) => state.user !== null && state.user.isAdmin;
+

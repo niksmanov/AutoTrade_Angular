@@ -5,7 +5,7 @@ import { take } from 'rxjs/operators';
 import * as fromRoot from '../app.reducer';
 
 @Injectable()
-export class AuthGuard implements CanActivate {
+export class UnAuthGuard implements CanActivate {
   constructor(
     private store: Store<fromRoot.State>,
     private router: Router,
@@ -14,8 +14,8 @@ export class AuthGuard implements CanActivate {
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {
     this.store.select(fromRoot.getIsAuth).pipe(take(1))
       .subscribe(isAuth => {
-        if (!isAuth) {
-          this.router.navigateByUrl('/login');
+        if (isAuth) {
+          this.router.navigateByUrl('/');
         }
       })
     return true;
