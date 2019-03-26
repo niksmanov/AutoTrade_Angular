@@ -1,49 +1,54 @@
-import * as types from './types';
+import * as actions from './vehicle.actions';
+import * as I from '../../../app.interfaces';
+
+export interface State {
+  isLoading: boolean,
+  vehicle: I.Vehicle,
+  vehicles: I.Vehicle[],
+  vehicleMakes: I.VehicleMake[],
+  vehicleModels: I.VehicleModel[],
+}
 
 const initialState = {
-	vehicle: {},
-	vehicles: [],
-	vehicleMakes: [],
-	vehicleModels: [],
-	isLoading: true,
-};
-
-export const vehicleActionCreators = {
-
+  vehicle: null,
+  vehicles: [],
+  vehicleMakes: [],
+  vehicleModels: [],
+  isLoading: true,
 };
 
 
-export const reducer = (state = initialState, action) => {
-	switch (action.type) {
-		case types.UPDATE_VEHICLE:
-			return {
-				...state,
-				vehicle: action.vehicle,
-				isLoading: false,
-			};
-		case types.UPDATE_VEHICLES:
-			return {
-				...state,
-				vehicles: state.vehicles.concat(action.vehicles),
-				isLoading: false,
-			};
-		case types.UPDATE_VEHICLE_MAKES:
-			return {
-				...state,
-				vehicleMakes: action.vehicleMakes,
-				isLoading: false,
-			};
-		case types.UPDATE_VEHICLE_MODELS:
-			return {
-				...state,
-				vehicleModels: action.vehicleModels,
-				isLoading: false,
-			};
-		case types.UPDATE_CLEAR_STATE:
-			return initialState;
+export function vehicleReducer(state = initialState, action: actions.VehicleActions) {
+  switch (action.type) {
+    case actions.GET_VEHICLE:
+      return {
+        ...state,
+        vehicle: action.payload,
+        isLoading: false,
+      };
+    case actions.GET_VEHICLES:
+      return {
+        ...state,
+        vehicles: state.vehicles.concat(action.payload),
+        isLoading: false,
+      };
+    case actions.GET_VEHICLE_MAKES:
+      return {
+        ...state,
+        vehicleMakes: action.payload,
+        isLoading: false,
+      };
+    case actions.GET_VEHICLE_MODELS:
+      return {
+        ...state,
+        vehicleModels: action.payload,
+        isLoading: false,
+      };
+    case actions.CLEAR_STATE:
+      return initialState;
 
-		default: return state;
-	}
+    default: return state;
+  }
 };
 
 

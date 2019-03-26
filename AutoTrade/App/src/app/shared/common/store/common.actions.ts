@@ -1,65 +1,56 @@
-import * as types from './types';
+import { Action } from '@ngrx/store';
+import * as I from '../../../app.interfaces';
 
-const initialState = {
-	allCommons: {},
-	towns: [],
-	colors: [],
-	vehicleTypes: [],
-	gearboxTypes: [],
-	fuelTypes: [],
-	images: [],
-	isLoading: true,
-};
+export const GET_TOWNS = 'COMMON_GET_TOWNS';
+export const GET_COLORS = 'COMMON_GET_COLORS';
+export const GET_VEHICLE_TYPES = 'COMMON_GET_VEHICLE_TYPES';
+export const GET_FUEL_TYPES = 'COMMON_GET_FUEL_TYPES';
+export const GET_GEARBOX_TYPES = 'COMMON_GET_GEARBOX_TYPES';
+export const GET_ALL_COMMONS = 'COMMON_GET_ALL_COMMONS';
+export const GET_IMAGES = 'COMMON_GET_IMAGES';
 
-export const commonActionCreators = {
-	
-};
 
-export const reducer = (state = initialState, action) => {
-	switch (action.type) {
-		case types.UPDATE_TOWNS:
-			return {
-				...state,
-				towns: action.towns,
-				isLoading: false,
-			};
-		case types.UPDATE_COLORS:
-			return {
-				...state,
-				colors: action.colors,
-				isLoading: false,
-			};
-		case types.UPDATE_VEHICLE_TYPES:
-			return {
-				...state,
-				vehicleTypes: action.vehicleTypes,
-				isLoading: false,
-			};
-		case types.UPDATE_FUEL_TYPES:
-			return {
-				...state,
-				fuelTypes: action.fuelTypes,
-				isLoading: false,
-			};
-		case types.UPDATE_GEARBOX_TYPES:
-			return {
-				...state,
-				gearboxTypes: action.gearboxTypes,
-				isLoading: false,
-			};
-		case types.UPDATE_ALL_COMMONS:
-			return {
-				...state,
-				allCommons: action.allCommons,
-				isLoading: false,
-			};
-		case types.UPDATE_IMAGES:
-			return {
-				...state,
-				images: action.images,
-				isLoading: false,
-			};
+export class GetTowns implements Action {
+  readonly type = GET_TOWNS;
 
-		default: return state;
-	}
-};
+  constructor(public payload: I.Common[]) { }
+}
+
+export class GetColors implements Action {
+  readonly type = GET_COLORS;
+
+  constructor(public payload: I.Common[]) { }
+}
+
+export class GetVehicleTypes implements Action {
+  readonly type = GET_VEHICLE_TYPES;
+
+  constructor(public payload: I.Common[]) { }
+}
+
+export class GetFuelTypes implements Action {
+  readonly type = GET_FUEL_TYPES;
+
+  constructor(public payload: I.Common[]) { }
+}
+
+export class GetGearboxTypes implements Action {
+  readonly type = GET_GEARBOX_TYPES;
+
+  constructor(public payload: I.Common[]) { }
+}
+
+export class GetAllCommons implements Action {
+  readonly type = GET_ALL_COMMONS;
+
+  constructor(public payload: I.AllCommons) { }
+}
+
+export class GetImages implements Action {
+  readonly type = GET_IMAGES;
+
+  constructor(public payload: I.Image[]) { }
+}
+
+export type CommonActions = GetTowns | GetColors | GetVehicleTypes |
+  GetFuelTypes | GetGearboxTypes | GetAllCommons | GetImages;

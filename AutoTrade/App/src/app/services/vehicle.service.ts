@@ -1,29 +1,31 @@
 import { Injectable } from '@angular/core';
+import { Store } from '@ngrx/store';
 import { HttpClient, HttpParams } from '@angular/common/http';
-import { ResponseModel, Vehicle, VehicleMake, VehicleModel } from '../app.interfaces';
+import { ResponseModel } from '../app.interfaces';
+import * as fromRoot from '../app.reducer';
+import * as actions from '../shared/vehicle/store/vehicle.actions';
 
 @Injectable()
 export class VehicleService {
-  constructor(private http: HttpClient) { }
-
-  private vehicle: Vehicle;
-  private vehicles: Vehicle[];
-  private vehicleMakes: VehicleMake[];
-  private vehicleModels: VehicleModel[];
+  constructor(
+    private http: HttpClient,
+    private store: Store<fromRoot.State>
+  ) { }
 
 
-  getVehicle(id = ''): Vehicle {
+  getVehicle(id = '') {
     this.http.get<ResponseModel>(
       `/vehicle/getvehicle?id=${id}`)
       .subscribe(r => {
         if (r.succeeded) {
-          this.vehicle = r.data;
+          this.store.dispatch(
+            new actions.GetVehicle(r.data)
+          );
         }
       })
-    return this.vehicle;
   }
 
-  getVehicles(page, size, userId = ''): Vehicle[] {
+  getVehicles(page, size, userId = '') {
     const params = new HttpParams()
       .set('page', page)
       .set('size', size)
@@ -33,35 +35,38 @@ export class VehicleService {
       '/vehicle/getvehicles', { params })
       .subscribe(r => {
         if (r.succeeded) {
-          this.vehicles = r.data;
+          this.store.dispatch(
+            new actions.GetVehicles(r.data)
+          );
         }
       })
-    return this.vehicles;
   }
 
-  getSearchedVehicles(form): Vehicle[] {
+  getSearchedVehicles(form) {
     this.http.post<ResponseModel>(
       '/vehicle/searchvehicles', form)
       .subscribe(r => {
         if (r.succeeded) {
-          this.vehicles = r.data;
+          this.store.dispatch(
+            new actions.GetSearchedVehicles(r.data)
+          );
         }
       })
-    return this.vehicles;
   }
 
-  getVehicleMakes(): VehicleMake[] {
+  getVehicleMakes() {
     this.http.get<ResponseModel>(
       '/vehicle/getvehiclemakes')
       .subscribe(r => {
         if (r.succeeded) {
-          this.vehicleMakes = r.data;
+          this.store.dispatch(
+            new actions.GetVehicleMakes(r.data)
+          );
         }
       })
-    return this.vehicleMakes;
   }
 
-  getVehicleModels(makeId, vehicleTypeId): VehicleModel[] {
+  getVehicleModels(makeId, vehicleTypeId) {
     const params = new HttpParams()
       .set('makeId', makeId)
       .set('vehicleTypeId', vehicleTypeId);
@@ -70,9 +75,16 @@ export class VehicleService {
       '/vehicle/getvehiclemakes', { params })
       .subscribe(r => {
         if (r.succeeded) {
-          this.vehicleModels = r.data;
+          this.store.dispatch(
+            new actions.GetVehicleModels(r.data)
+          );
         }
       })
-    return this.vehicleModels;
+  }
+
+  clearVehiclesState() {
+    this.store.dispatch(
+      new actions.ClearVehiclesState()
+    );
   }
 }

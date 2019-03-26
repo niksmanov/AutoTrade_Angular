@@ -1,9 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { HttpClient, HttpParams } from '@angular/common/http';
-import { ResponseModel, User } from '../app.interfaces';
-import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { ResponseModel } from '../app.interfaces';
 import * as fromRoot from '../app.reducer';
 import * as actions from '../shared/user/store/user.actions';
 
@@ -13,6 +11,7 @@ export class UserService {
     private http: HttpClient,
     private store: Store<fromRoot.State>,
   ) { }
+
 
   getUser() {
     this.http.get<ResponseModel>(
@@ -25,18 +24,26 @@ export class UserService {
       })
   }
 
-  getUsers(page, size, search = ''): Observable<User[]> {
+  getUsers(page, size, search = '') {
     const params = new HttpParams()
       .set('page', page)
       .set('size', size)
       .set('search', search);
 
     return this.http.get<ResponseModel>(
-      '/admin/getusers', { params }).pipe(
-        map(r => {
-          if (r.succeeded) {
-            return r.data;
-          }
-        }))
+      '/admin/getusers', { params })
+      .subscribe(r => {
+        if (r.succeeded) {
+          this.store.dispatch(
+            new actions.GetUsers(r.data)
+          );
+        }
+      })
+  }
+
+  clearUsersState() {
+    this.store.dispatch(
+      new actions.ClearUsersState()
+    );
   }
 }

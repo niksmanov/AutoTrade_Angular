@@ -1,65 +1,73 @@
-import * as types from './types';
+import * as actions from './common.actions';
+import * as I from '../../../app.interfaces';
 
-const initialState = {
-	allCommons: {},
-	towns: [],
-	colors: [],
-	vehicleTypes: [],
-	gearboxTypes: [],
-	fuelTypes: [],
-	images: [],
-	isLoading: true,
+export interface State {
+  isLoading: boolean,
+  allCommons: I.AllCommons,
+  towns: I.Common[],
+  colors: I.Common[],
+  vehicleTypes: I.Common[],
+  gearboxTypes: I.Common[],
+  fuelTypes: I.Common[],
+  images: I.Image[],
+}
+
+const initialState: State = {
+  allCommons: null,
+  towns: [],
+  colors: [],
+  vehicleTypes: [],
+  gearboxTypes: [],
+  fuelTypes: [],
+  images: [],
+  isLoading: true,
 };
 
-export const commonActionCreators = {
+export function commonReducer(state = initialState, action: actions.CommonActions) {
+  switch (action.type) {
+    case actions.GET_TOWNS:
+      return {
+        ...state,
+        towns: action.payload,
+        isLoading: false,
+      };
+    case actions.GET_COLORS:
+      return {
+        ...state,
+        colors: action.payload,
+        isLoading: false,
+      };
+    case actions.GET_VEHICLE_TYPES:
+      return {
+        ...state,
+        vehicleTypes: action.payload,
+        isLoading: false,
+      };
+    case actions.GET_FUEL_TYPES:
+      return {
+        ...state,
+        fuelTypes: action.payload,
+        isLoading: false,
+      };
+    case actions.GET_GEARBOX_TYPES:
+      return {
+        ...state,
+        gearboxTypes: action.payload,
+        isLoading: false,
+      };
+    case actions.GET_ALL_COMMONS:
+      return {
+        ...state,
+        allCommons: action.payload,
+        isLoading: false,
+      };
+    case actions.GET_IMAGES:
+      return {
+        ...state,
+        images: action.payload,
+        isLoading: false,
+      };
 
-};
-
-export const reducer = (state = initialState, action) => {
-	switch (action.type) {
-		case types.UPDATE_TOWNS:
-			return {
-				...state,
-				towns: action.towns,
-				isLoading: false,
-			};
-		case types.UPDATE_COLORS:
-			return {
-				...state,
-				colors: action.colors,
-				isLoading: false,
-			};
-		case types.UPDATE_VEHICLE_TYPES:
-			return {
-				...state,
-				vehicleTypes: action.vehicleTypes,
-				isLoading: false,
-			};
-		case types.UPDATE_FUEL_TYPES:
-			return {
-				...state,
-				fuelTypes: action.fuelTypes,
-				isLoading: false,
-			};
-		case types.UPDATE_GEARBOX_TYPES:
-			return {
-				...state,
-				gearboxTypes: action.gearboxTypes,
-				isLoading: false,
-			};
-		case types.UPDATE_ALL_COMMONS:
-			return {
-				...state,
-				allCommons: action.allCommons,
-				isLoading: false,
-			};
-		case types.UPDATE_IMAGES:
-			return {
-				...state,
-				images: action.images,
-				isLoading: false,
-			};
-
-		default: return state;
-	}
+    default: return state;
+  }
 };
