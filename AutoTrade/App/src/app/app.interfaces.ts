@@ -7,7 +7,12 @@ export interface ResponseModel {
 export interface User {
   id: number;
   email: string;
+  townId?: number;
+  userName: string;
   isAdmin: boolean;
+  address: string;
+  phoneNumber: string;
+  emailConfirmed: boolean;
 }
 
 export interface Common {

@@ -5,7 +5,6 @@ namespace AutoTrade.Core.JsonModels
 	public class UserJsonModel
 	{
 		public string Id { get; set; }
-		[Required]
 		public string Email { get; set; }
 		public string OldPassword { get; set; }
 		public string Password { get; set; }

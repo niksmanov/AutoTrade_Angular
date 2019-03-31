@@ -1,0 +1,28 @@
+<app-navigation></app-navigation>
+
+<div>
+  <form (ngSubmit)="onSubmit()">
+    <label class="spacer">Username: </label>
+    <span class="form-control"> {{user$.userName}}</span>
+    <label class="spacer">Town:</label>
+    <select [(ngModel)]="townId" name="TownId" class="form-control">
+      <option [value]="null">Select Town</option>
+      <option *ngFor="let town of towns$" [value]="town.id">{{town.name}}</option>
+    </select>
+    <label class="spacer">Address:</label>
+    <input [(ngModel)]="address" name="Address" class="form-control" autoComplete="off" />
+    <label class="spacer">Phone number:</label>
+    <input [(ngModel)]="phoneNumber" name="PhoneNumber" class="form-control" type="number" autoComplete="off" />
+    <button type="submit" class="btn btn-primary spacer">Submit</button>
+  </form>
+
+  <div *ngIf="!user$.emailConfirmed && !sendEmail" class="alert alert-info">
+    <p>Please check your email and confirm this account.</p>
+    <p>
+      If you haven't receive email from us
+      <span (click)="reSendEmail()"> <u>click here</u></span> to send it again.
+    </p>
+  </div>
+
+  <app-error [errors]="errors"></app-error>
+</div>

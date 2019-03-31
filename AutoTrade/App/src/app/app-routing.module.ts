@@ -10,7 +10,8 @@ import { NotFoundComponent } from './not-found/not-found.component';
 const routes: Routes = [
   { path: '', component: HomeComponent, pathMatch: 'full' },
   { path: '', loadChildren: './account/account.module#AccountModule', canActivate: [UnAuthGuard] },
-  { path: 'profile', component: HomeComponent, canActivate: [AuthGuard] },
+  { path: 'profile', loadChildren: './profile/profile.module#ProfileModule', canActivate: [AuthGuard] },
+
 
   { path: '**', component: NotFoundComponent },
 ];

@@ -37,4 +37,3 @@ export function userReducer(state = initialState, action: actions.UserActions) {
 
 export const getIsAuth = (state: State) => state.user !== null;
 export const getIsAdmin = (state: State) => state.user !== null && state.user.isAdmin;
-
