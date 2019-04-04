@@ -173,7 +173,7 @@ namespace AutoTrade.Controllers
 
 				model.Code = await _userManager.GeneratePasswordResetTokenAsync(user);
 				await this.ChangePassword(model);
-				return Json(new ResponseJsonModel(error: Messages.INFO_PASSWORD_CHANGED));
+				return Json(new ResponseJsonModel(true, error: Messages.INFO_PASSWORD_CHANGED));
 			}
 			return Json(new ResponseJsonModel(error: Messages.ERROR_INVALID_EMAIL));
 		}

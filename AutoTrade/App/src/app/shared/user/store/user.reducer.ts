@@ -9,8 +9,8 @@ export interface State {
 
 const initialState: State = {
   isLoading: true,
-  user: null, 
-  users: [], 
+  user: null,
+  users: [],
 };
 
 
@@ -29,7 +29,11 @@ export function userReducer(state = initialState, action: actions.UserActions) {
         isLoading: false,
       };
     case actions.CLEAR_STATE:
-      return initialState;
+      return {
+        ...state,
+        users: [],
+        isLoading: true,
+      };
 
     default: return state;
   }

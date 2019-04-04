@@ -5,12 +5,12 @@ import * as fromRoot from '../app.reducer';
 import { Observable } from 'rxjs';
 
 @Component({
-  selector: 'app-nav-menu',
-  templateUrl: './nav-menu.component.html',
-  styleUrls: ['./nav-menu.component.css']
+  selector: 'app-main-navigation',
+  templateUrl: './main-navigation.component.html',
+  styleUrls: ['./main-navigation.component.css']
 })
 
-export class NavMenuComponent implements OnInit {
+export class MainNavigationComponent implements OnInit {
   constructor(
     private http: HttpClient,
     private store: Store<fromRoot.State>,

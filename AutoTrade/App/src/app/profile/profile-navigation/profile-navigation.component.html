@@ -1,21 +1,21 @@
 <div class='profile-nav navbar navbar-inverse'>
   <ul class='nav navbar-nav'>
-    <li [routerLinkActive]='["link-active"]'>
+    <li [routerLinkActive]='["active"]' [routerLinkActiveOptions]='{ exact: true }'>
       <a [routerLink]='["/profile"]'>
         <span class='glyphicon glyphicon-user'></span>
       </a>
     </li>
-    <li [routerLinkActive]='["link-active"]'>
+    <li [routerLinkActive]='["active"]'>
       <a [routerLink]='["/profile/changepassword"]'>
         Change Password
       </a>
     </li>
-    <li [routerLinkActive]='["link-active"]'>
+    <li [routerLinkActive]='["active"]'>
       <a [routerLink]='["/profile/vehicles"]'>
         List Vehicles
       </a>
     </li>
-    <li [routerLinkActive]='["link-active"]'>
+    <li [routerLinkActive]='["active"]'>
       <a [routerLink]='["/profile/addvehicle"]'>
         Add Vehicle
       </a>

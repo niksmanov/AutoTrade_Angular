@@ -9,7 +9,7 @@ import { reducers } from './app.reducer';
 
 //Components
 import { AppComponent } from './app.component';
-import { NavMenuComponent } from './nav-menu/nav-menu.component';
+import { MainNavigationComponent } from './main-navigation/main-navigation.component';
 import { HomeComponent } from './home/home.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 
@@ -24,7 +24,7 @@ import { CommonService } from './services/common.service';
   declarations: [
     AppComponent,
     HomeComponent,
-    NavMenuComponent,
+    MainNavigationComponent,
     NotFoundComponent,
   ],
   imports: [

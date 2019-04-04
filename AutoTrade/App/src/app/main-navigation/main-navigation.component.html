@@ -14,29 +14,30 @@
     <div class='clearfix'></div>
     <div class='navbar-collapse collapse'>
       <ul class='nav navbar-nav'>
-        <li [routerLinkActive]='["link-active"]' [routerLinkActiveOptions]='{ exact: true }'>
+        <li [routerLinkActive]='["active"]' [routerLinkActiveOptions]='{ exact: true }'>
           <a [routerLink]='["/"]'>
             <span class='glyphicon glyphicon-home'></span> Home
           </a>
         </li>
-        <li [routerLinkActive]='["link-active"]'>
+        <li [routerLinkActive]='["active"]'>
           <a [routerLink]='["/search"]'>
             <span class='glyphicon glyphicon-search'></span> Search Vehicle
           </a>
         </li>
-        <li *ngIf="(isAdmin$ | async)" [routerLinkActive]='["link-active"]'>
+
+        <li *ngIf="(isAdmin$ | async)" [routerLinkActive]='["active"]'>
           <a [routerLink]='["/admin"]'>
             <span class='glyphicon glyphicon-warning-sign'></span> Administration
           </a>
         </li>
 
         <ng-container *ngIf="(isAuth$ | async)">
-          <li [routerLinkActive]='["link-active"]'>
+          <li [routerLinkActive]='["active"]'>
             <a [routerLink]='["/profile"]'>
               <span class='glyphicon glyphicon-user'></span> Profile
             </a>
           </li>
-          <li [routerLinkActive]='["link-active"]'>
+          <li [routerLinkActive]='["active"]'>
             <a (click)="logOut()">
               <span class='glyphicon glyphicon-off'></span> Logout
             </a>
@@ -44,17 +45,17 @@
         </ng-container>
 
         <ng-container *ngIf="!(isAuth$ | async)">
-          <li [routerLinkActive]='["link-active"]'>
+          <li [routerLinkActive]='["active"]'>
             <a [routerLink]='["/register"]'>
               <span class='glyphicon glyphicon-th-list'></span> Register
             </a>
           </li>
-          <li [routerLinkActive]='["link-active"]'>
+          <li [routerLinkActive]='["active"]'>
             <a [routerLink]='["/login"]'>
               <span class='glyphicon glyphicon-off'></span> Login
             </a>
           </li>
-          <li [routerLinkActive]='["link-active"]'>
+          <li [routerLinkActive]='["active"]'>
             <a [routerLink]='["/forgotpassword"]'>
               <span class='glyphicon glyphicon-refresh'></span> Forgot Password
             </a>

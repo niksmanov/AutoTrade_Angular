@@ -24,7 +24,9 @@ export class ChangePasswordComponent {
         password: this.password,
       }).subscribe(r => {
         this.errors = r.errors;
-        window.location.reload();
+        if (r.succeeded) {
+          window.location.reload();
+        }
       })
   }
 }

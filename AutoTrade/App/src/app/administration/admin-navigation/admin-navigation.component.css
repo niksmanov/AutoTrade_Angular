@@ -1,0 +1,22 @@
+.admin-nav .container {
+  border-radius: 5px;
+}
+
+.admin-nav ul li {
+  float: left;
+}
+
+.admin-nav li:not(.active) a {
+  color: #ffffff !important;
+}
+
+.admin-nav ul .active a {
+  border-radius: 5px;
+  background-color: #DFDFDF;
+  color: #555555;
+}
+
+.admin-nav .container {
+  background-color: #404040;
+  width: unset;
+}
