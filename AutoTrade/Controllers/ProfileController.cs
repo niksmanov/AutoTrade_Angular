@@ -12,9 +12,9 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace AutoTrade.Controllers
 {
-	[Authorize]
 	[Route("[controller]")]
 	[ApiController]
+	[Authorize]
 	public class ProfileController : Controller
 	{
 		private readonly UserManager<User> _userManager;
@@ -98,15 +98,15 @@ namespace AutoTrade.Controllers
 		}
 
 		[HttpPost("[action]")]
-		public IActionResult RemoveVehicle(Guid id)
+		public IActionResult RemoveVehicle(VehicleJsonModel model)
 		{
 			bool isDeleted = false;
 			string userId = _userManager.GetUserId(HttpContext.User);
 			bool isAdmin = User.IsInRole(UserRoles.Admin.ToString());
 
-			var vehicle = _vehicleService.GetVehicle(id);
+			var vehicle = _vehicleService.GetVehicle(model.Id);
 			if (vehicle.UserId == userId || isAdmin)
-				isDeleted = _vehicleService.RemoveVehicle(id);
+				isDeleted = _vehicleService.RemoveVehicle(model.Id);
 
 			string error = isDeleted ? Messages.INFO_ENTITY_DELETED : Messages.ERROR_DELETE_PROBLEM;
 			return Json(new ResponseJsonModel(isDeleted, error: error));

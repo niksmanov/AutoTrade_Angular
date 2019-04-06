@@ -11,9 +11,9 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace AutoTrade.Controllers
 {
-	[Authorize(Roles = "Admin")]
 	[Route("[controller]")]
 	[ApiController]
+	[Authorize(Roles = "Admin")]
 	public class AdminController : Controller
 	{
 		private readonly IUserService _userService;
@@ -46,9 +46,9 @@ namespace AutoTrade.Controllers
 		}
 
 		[HttpPost("[action]")]
-		public IActionResult RemoveVehicleMake(int id)
+		public IActionResult RemoveVehicleMake(VehicleMakeJsonModel model)
 		{
-			bool isDeleted = _vehicleService.RemoveMake(id);
+			bool isDeleted = _vehicleService.RemoveMake(model.Id);
 			string error = isDeleted ? Messages.INFO_ENTITY_DELETED : Messages.ERROR_DELETE_PROBLEM;
 			return Json(new ResponseJsonModel(isDeleted, error: error));
 		}
@@ -68,9 +68,9 @@ namespace AutoTrade.Controllers
 		}
 
 		[HttpPost("[action]")]
-		public IActionResult RemoveVehicleModel(int id)
+		public IActionResult RemoveVehicleModel(VehicleModelJsonModel model)
 		{
-			bool isDeleted = _vehicleService.RemoveModel(id);
+			bool isDeleted = _vehicleService.RemoveModel(model.Id);
 			string error = isDeleted ? Messages.INFO_ENTITY_DELETED : Messages.ERROR_DELETE_PROBLEM;
 			return Json(new ResponseJsonModel(isDeleted, error: error));
 		}
@@ -90,9 +90,9 @@ namespace AutoTrade.Controllers
 		}
 
 		[HttpPost("[action]")]
-		public IActionResult RemoveTown(int id)
+		public IActionResult RemoveTown(CommonJsonModel model)
 		{
-			bool isDeleted = _commonService.RemoveTown(id);
+			bool isDeleted = _commonService.RemoveTown(model.Id);
 			string error = isDeleted ? Messages.INFO_ENTITY_DELETED : Messages.ERROR_DELETE_PROBLEM;
 			return Json(new ResponseJsonModel(isDeleted, error: error));
 		}
@@ -111,9 +111,9 @@ namespace AutoTrade.Controllers
 		}
 
 		[HttpPost("[action]")]
-		public IActionResult RemoveColor(int id)
+		public IActionResult RemoveColor(CommonJsonModel model)
 		{
-			bool isDeleted = _commonService.RemoveColor(id);
+			bool isDeleted = _commonService.RemoveColor(model.Id);
 			string error = isDeleted ? Messages.INFO_ENTITY_DELETED : Messages.ERROR_DELETE_PROBLEM;
 			return Json(new ResponseJsonModel(isDeleted, error: error));
 		}
@@ -132,9 +132,9 @@ namespace AutoTrade.Controllers
 		}
 
 		[HttpPost("[action]")]
-		public IActionResult RemoveVehicleType(int id)
+		public IActionResult RemoveVehicleType(CommonJsonModel model)
 		{
-			bool isDeleted = _commonService.RemoveVehicleType(id);
+			bool isDeleted = _commonService.RemoveVehicleType(model.Id);
 			string error = isDeleted ? Messages.INFO_ENTITY_DELETED : Messages.ERROR_DELETE_PROBLEM;
 			return Json(new ResponseJsonModel(isDeleted, error: error));
 		}
@@ -153,9 +153,9 @@ namespace AutoTrade.Controllers
 		}
 
 		[HttpPost("[action]")]
-		public IActionResult RemoveFuelType(int id)
+		public IActionResult RemoveFuelType(CommonJsonModel model)
 		{
-			bool isDeleted = _commonService.RemoveFuelType(id);
+			bool isDeleted = _commonService.RemoveFuelType(model.Id);
 			string error = isDeleted ? Messages.INFO_ENTITY_DELETED : Messages.ERROR_DELETE_PROBLEM;
 			return Json(new ResponseJsonModel(isDeleted, error: error));
 		}
@@ -174,9 +174,9 @@ namespace AutoTrade.Controllers
 		}
 
 		[HttpPost("[action]")]
-		public IActionResult RemoveGearboxType(int id)
+		public IActionResult RemoveGearboxType(CommonJsonModel model)
 		{
-			bool isDeleted = _commonService.RemoveGearboxType(id);
+			bool isDeleted = _commonService.RemoveGearboxType(model.Id);
 			string error = isDeleted ? Messages.INFO_ENTITY_DELETED : Messages.ERROR_DELETE_PROBLEM;
 			return Json(new ResponseJsonModel(isDeleted, error: error));
 		}
@@ -190,9 +190,9 @@ namespace AutoTrade.Controllers
 		}
 
 		[HttpPost("[action]")]
-		public IActionResult RemoveUser(string id)
+		public IActionResult RemoveUser(UserJsonModel model)
 		{
-			bool isDeleted = _userService.RemoveUser(id);
+			bool isDeleted = _userService.RemoveUser(model.Id);
 			string error = isDeleted ? Messages.INFO_ENTITY_DELETED : Messages.ERROR_DELETE_PROBLEM;
 			return Json(new ResponseJsonModel(isDeleted, error: error));
 		}

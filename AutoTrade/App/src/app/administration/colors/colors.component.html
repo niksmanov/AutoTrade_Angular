@@ -1,0 +1,22 @@
+<app-admin-navigation></app-admin-navigation>
+
+<div class="row">
+  <div class="col-sm-3">
+    <div>
+      <label>Color Name:</label>
+      <br />
+      <input [(ngModel)]="name" name="name" type="text" autoComplete="off" required class="form-control spacer" />
+      <br />
+      <button (click)="addColor()" class="btn btn-primary">Add Color</button>
+    </div>
+  </div>
+  <div class="col-sm-9">
+    <div *ngFor="let color of colors$" class="admin-entity">
+      <button (click)="deleteColor(color.id)" class="btn btn-danger">X</button>
+      <span>{{color.name}}</span>
+      <hr />
+    </div>
+  </div>
+</div>
+
+<app-error [errors]="errors"></app-error>
