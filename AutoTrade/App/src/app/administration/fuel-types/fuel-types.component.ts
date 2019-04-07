@@ -6,12 +6,12 @@ import * as fromRoot from '../../app.reducer';
 import { CommonService } from '../../services/common.service';
 
 @Component({
-  selector: 'app-colors',
-  templateUrl: './colors.component.html',
+  selector: 'app-fuel-types',
+  templateUrl: './fuel-types.component.html',
 })
-export class ColorsComponent implements OnInit {
+export class FuelTypesComponent implements OnInit {
   public errors: string[];
-  public colors$: Common[];
+  public types$: Common[];
 
   public name: string;
 
@@ -22,34 +22,34 @@ export class ColorsComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.commonService.getColors();
+    this.commonService.getFuelTypes();
     this.store.select(fromRoot.getCommonState)
       .subscribe(r => {
-        this.colors$ = r.colors;
+        this.types$ = r.fuelTypes;
       });
   }
 
-  addColor() {
-    this.http.post<ResponseModel>('/admin/addcolor',
+  addType() {
+    this.http.post<ResponseModel>('/admin/addfueltype',
       {
         name: this.name,
       }).subscribe(r => {
         this.errors = r.errors;
         if (r.succeeded) {
           this.name = '';
-          this.commonService.getColors();
+          this.commonService.getFuelTypes();
         } 
       })
   }
 
-  removeColor(id) {
-    this.http.post<ResponseModel>('/admin/removecolor',
+  removeType(id) {
+    this.http.post<ResponseModel>('/admin/removefueltype',
       {
         id: id,
       }).subscribe(r => {
         this.errors = r.errors;
         if (r.succeeded) {
-          this.commonService.getColors();
+          this.commonService.getFuelTypes();
         } 
       })
   }

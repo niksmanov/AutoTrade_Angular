@@ -8,14 +8,16 @@ import { UserService } from '../../services/user.service';
 @Component({
   selector: 'app-users',
   templateUrl: './users.component.html',
-  styleUrls: ['./users.component.css']
 })
+
+
 export class UsersComponent implements OnInit {
   public errors: string[];
   public page: number = 0;
   public size: number = 10;
 
   public users$: User[];
+  public search: string;
 
   constructor(
     private http: HttpClient,
@@ -32,4 +34,36 @@ export class UsersComponent implements OnInit {
       });
   }
 
+
+  changeRole(id, isAdmin) {
+    this.http.post<ResponseModel>('/admin/changerole',
+      {
+        id: id,
+        isAdmin: !isAdmin,
+      }).subscribe(r => {
+        this.errors = r.errors;
+        if (r.succeeded) {
+          this.userService.clearUsersState();
+          this.userService.getUsers(this.page, this.size);
+        }
+      })
+  }
+
+  removeUser(id) {
+    this.http.post<ResponseModel>('/admin/removeuser',
+      {
+        id: id,
+      }).subscribe(r => {
+        this.errors = r.errors;
+        if (r.succeeded) {
+          this.userService.clearUsersState();
+          this.userService.getUsers(this.page, this.size);
+        }
+      })
+  }
+
+  searchUser() {
+    this.userService.clearUsersState();
+    this.userService.getUsers(this.page, this.size, this.search);
+  }
 }

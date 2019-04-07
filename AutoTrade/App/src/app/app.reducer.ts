@@ -24,4 +24,4 @@ export const getIsAuth = createSelector(getUserState, fromUser.getIsAuth);
 export const getIsAdmin = createSelector(getUserState, fromUser.getIsAdmin);
 
 export const getCommonState = createFeatureSelector<fromCommon.State>('common');
-export const getVehicleState = createFeatureSelector<fromCommon.State>('vehicle');
+export const getVehicleState = createFeatureSelector<fromVehicle.State>('vehicle');

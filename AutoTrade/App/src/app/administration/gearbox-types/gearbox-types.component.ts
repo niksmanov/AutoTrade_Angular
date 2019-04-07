@@ -6,12 +6,12 @@ import * as fromRoot from '../../app.reducer';
 import { CommonService } from '../../services/common.service';
 
 @Component({
-  selector: 'app-colors',
-  templateUrl: './colors.component.html',
+  selector: 'app-gearbox-types',
+  templateUrl: './gearbox-types.component.html',
 })
-export class ColorsComponent implements OnInit {
+export class GearboxTypesComponent implements OnInit {
   public errors: string[];
-  public colors$: Common[];
+  public types$: Common[];
 
   public name: string;
 
@@ -22,34 +22,34 @@ export class ColorsComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.commonService.getColors();
+    this.commonService.getGearboxTypes();
     this.store.select(fromRoot.getCommonState)
       .subscribe(r => {
-        this.colors$ = r.colors;
+        this.types$ = r.gearboxTypes;
       });
   }
 
-  addColor() {
-    this.http.post<ResponseModel>('/admin/addcolor',
+  addType() {
+    this.http.post<ResponseModel>('/admin/addgearboxtype',
       {
         name: this.name,
       }).subscribe(r => {
         this.errors = r.errors;
         if (r.succeeded) {
           this.name = '';
-          this.commonService.getColors();
+          this.commonService.getGearboxTypes();
         } 
       })
   }
 
-  removeColor(id) {
-    this.http.post<ResponseModel>('/admin/removecolor',
+  removeType(id) {
+    this.http.post<ResponseModel>('/admin/removegearboxtype',
       {
         id: id,
       }).subscribe(r => {
         this.errors = r.errors;
         if (r.succeeded) {
-          this.commonService.getColors();
+          this.commonService.getGearboxTypes();
         } 
       })
   }

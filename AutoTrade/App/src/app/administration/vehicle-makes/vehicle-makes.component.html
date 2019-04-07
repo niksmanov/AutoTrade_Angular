@@ -3,17 +3,17 @@
 <div class="row">
   <div class="col-sm-3">
     <div>
-      <label>Color Name:</label>
+      <label>Make Name:</label>
       <br />
       <input [(ngModel)]="name" name="name" type="text" autoComplete="off" required class="form-control spacer" />
       <br />
-      <button (click)="addColor()" class="btn btn-primary">Add Color</button>
+      <button (click)="addMake()" class="btn btn-primary">Add Make</button>
     </div>
   </div>
   <div class="col-sm-9">
-    <div *ngFor="let color of colors$" class="admin-entity">
-      <button (click)="removeColor(color.id)" class="btn btn-danger">X</button>
-      <span>{{color.name}}</span>
+    <div *ngFor="let make of makes$" class="admin-entity">
+      <button (click)="removeMake(make.id)" class="btn btn-danger">X</button>
+      <span>{{make.name}}</span>
       <hr />
     </div>
   </div>

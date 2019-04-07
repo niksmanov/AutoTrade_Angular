@@ -6,12 +6,12 @@ import * as fromRoot from '../../app.reducer';
 import { CommonService } from '../../services/common.service';
 
 @Component({
-  selector: 'app-colors',
-  templateUrl: './colors.component.html',
+  selector: 'app-vehicle-types',
+  templateUrl: './vehicle-types.component.html',
 })
-export class ColorsComponent implements OnInit {
+export class VehicleTypesComponent implements OnInit {
   public errors: string[];
-  public colors$: Common[];
+  public types$: Common[];
 
   public name: string;
 
@@ -22,34 +22,34 @@ export class ColorsComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.commonService.getColors();
+    this.commonService.getVehicleTypes();
     this.store.select(fromRoot.getCommonState)
       .subscribe(r => {
-        this.colors$ = r.colors;
+        this.types$ = r.vehicleTypes;
       });
   }
 
-  addColor() {
-    this.http.post<ResponseModel>('/admin/addcolor',
+  addType() {
+    this.http.post<ResponseModel>('/admin/addvehicletype',
       {
         name: this.name,
       }).subscribe(r => {
         this.errors = r.errors;
         if (r.succeeded) {
           this.name = '';
-          this.commonService.getColors();
+          this.commonService.getVehicleTypes();
         } 
       })
   }
 
-  removeColor(id) {
-    this.http.post<ResponseModel>('/admin/removecolor',
+  removeType(id) {
+    this.http.post<ResponseModel>('/admin/removevehicletype',
       {
         id: id,
       }).subscribe(r => {
         this.errors = r.errors;
         if (r.succeeded) {
-          this.commonService.getColors();
+          this.commonService.getVehicleTypes();
         } 
       })
   }

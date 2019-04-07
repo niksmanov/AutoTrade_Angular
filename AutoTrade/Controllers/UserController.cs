@@ -150,7 +150,7 @@ namespace AutoTrade.Controllers
 
 		[HttpGet("[action]")]
 		[Route("ConfirmEmail", Name = "ConfirmEmail")]
-		public async Task<IActionResult> ConfirmEmail(UserJsonModel model)
+		public async Task<IActionResult> ConfirmEmail([FromQuery] UserJsonModel model)
 		{
 			var user = await _userManager.FindByIdAsync(model.Id);
 			if (user != null)

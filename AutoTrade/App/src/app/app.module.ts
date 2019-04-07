@@ -11,6 +11,7 @@ import { reducers } from './app.reducer';
 import { AppComponent } from './app.component';
 import { MainNavigationComponent } from './main-navigation/main-navigation.component';
 import { HomeComponent } from './home/home.component';
+import { SearchComponent } from './search/search.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 
 //Services
@@ -26,6 +27,7 @@ import { CommonService } from './services/common.service';
     HomeComponent,
     MainNavigationComponent,
     NotFoundComponent,
+    SearchComponent,
   ],
   imports: [
     FormsModule,

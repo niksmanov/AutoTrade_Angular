@@ -72,7 +72,7 @@ export class VehicleService {
       .set('vehicleTypeId', vehicleTypeId);
 
     this.http.get<ResponseModel>(
-      '/vehicle/getvehiclemakes', { params })
+      '/vehicle/getvehiclemodels', { params })
       .subscribe(r => {
         if (r.succeeded) {
           this.store.dispatch(
