@@ -5,7 +5,7 @@ export interface ResponseModel {
 }
 
 export interface User {
-  id: number;
+  id: string;
   email: string;
   townId?: number;
   userName: string;
@@ -29,6 +29,12 @@ export interface AllCommons {
 }
 
 export interface Vehicle {
+  id: string;
+  userId?: string;
+  url?: string;
+  coverImageUrl?: string;
+  uploadImages: Image[];
+
   page: number;
   size: number;
 
@@ -40,6 +46,12 @@ export interface Vehicle {
   typeId?: number;
   fuelTypeId?: number;
   gearboxTypeId?: number;
+
+  horsePower?: number;
+  price?: number;
+  cubicCapacity?: number;
+  productionDate?: string;
+  displayDate?: string;
 
   airbags?: boolean;
   abs?: boolean;

@@ -51,6 +51,7 @@ namespace AutoTrade.Services
 			return DbContext.Towns?
 							.AsNoTracking()
 							.OrderBy(m => m.Name)
+							.ToList()
 							.Select(m => Map(m, new CommonJsonModel()));
 		}
 
@@ -88,6 +89,7 @@ namespace AutoTrade.Services
 			return DbContext.Colors?
 							.AsNoTracking()
 							.OrderBy(m => m.Name)
+							.ToList()
 							.Select(m => Map(m, new CommonJsonModel()));
 		}
 
@@ -125,6 +127,7 @@ namespace AutoTrade.Services
 			return DbContext.VehicleTypes?
 							.AsNoTracking()
 							.OrderBy(m => m.Name)
+							.ToList()
 							.Select(m => Map(m, new CommonJsonModel()));
 		}
 
@@ -162,6 +165,7 @@ namespace AutoTrade.Services
 			return DbContext.FuelTypes?
 							.AsNoTracking()
 							.OrderBy(m => m.Name)
+							.ToList()
 							.Select(m => Map(m, new CommonJsonModel()));
 		}
 
@@ -199,6 +203,7 @@ namespace AutoTrade.Services
 			return DbContext.GearboxTypes?
 							.AsNoTracking()
 							.OrderBy(m => m.Name)
+							.ToList()
 							.Select(m => Map(m, new CommonJsonModel()));
 		}
 
@@ -265,8 +270,7 @@ namespace AutoTrade.Services
 			string filePath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "images", $"{model.Id}");
 
 			if (Directory.Exists(filePath))
-				foreach (var file in Directory.GetFiles(filePath))
-					File.Delete(file);
+				Directory.Delete(filePath, true);
 			else
 				Directory.CreateDirectory(filePath);
 
