@@ -4,8 +4,8 @@
   <div class="col-sm-3">
     <div class="spacer">
       <label class="spacer">Make Name:</label>
-      <select (change)="selectType()" [(ngModel)]="makeId" name="MakeId" class="form-control">
-        <option [value]="0">Select Vehicle Make</option>
+      <select (change)="selectType()" [(ngModel)]="makeId" name="MakeId" minlength="1" class="form-control">
+        <option [value]="0" disabled>Select Vehicle Make</option>
         <option *ngFor="let make of makes$" [value]="make.id">{{make.name}}</option>
       </select>
     </div>
@@ -13,8 +13,8 @@
     <ng-container *ngIf="makeId > 0">
       <div class="spacer">
         <label class="spacer">Vehicle Type:</label>
-        <select (change)="selectType()" [(ngModel)]="typeId" name="TypeId" class="form-control">
-          <option [value]="0">Select Vehicle Make</option>
+        <select (change)="selectType()" [(ngModel)]="typeId" name="TypeId" minlength="1" class="form-control">
+          <option [value]="0" disabled>Select Vehicle Make</option>
           <option *ngFor="let type of types$" [value]="type.id">{{type.name}}</option>
         </select>
       </div>

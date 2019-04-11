@@ -1,9 +1,9 @@
-<form *ngIf="allCommons$ && vehicle && vehicleMakes$" #vehicleForm="ngForm" (ngSubmit)="onSubmit()">
+<form *ngIf="allCommons$ && vehicle && vehicleMakes$" #vehicleForm="ngForm" (ngSubmit)="onSubmit($event.target)">
   <div class="row">
     <div class="col-sm-6">
       <div>
         <label>Vehicle Type:</label>
-        <select [(ngModel)]="vehicle.typeId" (change)="initMakes()" name="typeId" required class="form-control spacer">
+        <select [(ngModel)]="vehicle.typeId" (change)="initMakes()" name="typeId" minlength="1" class="form-control spacer">
           <option [value]="0">Select Vehicle Type</option>
           <option *ngFor="let type of allCommons$.vehicleTypes" [value]="type.id">{{type.name}}</option>
         </select>
@@ -11,50 +11,50 @@
 
       <div>
         <label>Fuel Type:</label>
-        <select [(ngModel)]="vehicle.fuelTypeId" name="fuelTypeId" required class="form-control spacer">
-          <option [value]="0">Select Fuel Type</option>
+        <select [(ngModel)]="vehicle.fuelTypeId" name="fuelTypeId" minlength="1" class="form-control spacer">
+          <option [value]="0" disabled>Select Fuel Type</option>
           <option *ngFor="let type of allCommons$.fuelTypes" [value]="type.id">{{type.name}}</option>
         </select>
       </div>
 
       <div>
         <label>Gearbox Type:</label>
-        <select [(ngModel)]="vehicle.gearboxTypeId" name="gearboxTypeId" required class="form-control spacer">
-          <option [value]="0">Select Gearbox Type</option>
+        <select [(ngModel)]="vehicle.gearboxTypeId" name="gearboxTypeId" minlength="1" class="form-control spacer">
+          <option [value]="0" disabled>Select Gearbox Type</option>
           <option *ngFor="let type of allCommons$.gearboxTypes" [value]="type.id">{{type.name}}</option>
         </select>
       </div>
 
       <label>Makes:</label>
-      <select [(ngModel)]="vehicle.makeId" (change)="initMakes()" name="makeId" required class="form-control spacer">
-        <option [value]="0">Select Make</option>
+      <select [(ngModel)]="vehicle.makeId" (change)="initMakes()" name="makeId" minlength="1" class="form-control spacer">
+        <option [value]="0" disabled>Select Make</option>
         <option *ngFor="let make of vehicleMakes$" [value]="make.id">{{make.name}}</option>
       </select>
 
       <div>
         <label>Models:</label>
-        <select [(ngModel)]="vehicle.modelId" name="modelId" required class="form-control spacer">
-          <option [value]="0">Select Model</option>
+        <select [(ngModel)]="vehicle.modelId" name="modelId" minlength="1" class="form-control spacer">
+          <option [value]="0" disabled>Select Model</option>
           <option *ngFor="let model of vehicleModels$" [value]="model.id">{{model.name}}</option>
         </select>
       </div>
 
       <div>
         <label>Colors:</label>
-        <select [(ngModel)]="vehicle.colorId" name="colorId" required class="form-control spacer">
-          <option [value]="0">Select Color</option>
+        <select [(ngModel)]="vehicle.colorId" name="colorId" minlength="1" class="form-control spacer">
+          <option [value]="0" disabled>Select Color</option>
           <option *ngFor="let color of allCommons$.colors" [value]="color.id">{{color.name}}</option>
         </select>
       </div>
 
       <div class="spacer">
         <label>Horse power:</label>
-        <input [(ngModel)]="vehicle.horsePower" type="number" name="horsePower" required min="1" class="form-control" />
+        <input [(ngModel)]="vehicle.horsePower" type="number" name="horsePower" minlength="1" class="form-control" />
       </div>
 
       <div class="spacer">
         <label>Price (BGN):</label>
-        <input [(ngModel)]="vehicle.price" type="number" name="price" required min="1" class="form-control" />
+        <input [(ngModel)]="vehicle.price" type="number" name="price" minlength="1" class="form-control" />
       </div>
     </div>
 
@@ -62,12 +62,12 @@
     <div class="col-sm-6">
       <div className="spacer">
         <label>Cubic capacity (cm3):</label>
-        <input [(ngModel)]="vehicle.cubicCapacity" type="number" name="cubicCapacity" required min="50" class="form-control spacer" />
+        <input [(ngModel)]="vehicle.cubicCapacity" type="number" name="cubicCapacity" minlength="50" class="form-control spacer" />
       </div>
 
       <div>
         <label>Airbags:</label>
-        <select [(ngModel)]="vehicle.airbags" name="airbags" required class="form-control spacer">
+        <select [(ngModel)]="vehicle.airbags" name="airbags" class="form-control spacer">
           <option [value]="true">Yes</option>
           <option [value]="false">No</option>
         </select>
@@ -75,7 +75,7 @@
 
       <div>
         <label>ABS:</label>
-        <select [(ngModel)]="vehicle.abs" name="abs" required class="form-control spacer">
+        <select [(ngModel)]="vehicle.abs" name="abs" class="form-control spacer">
           <option [value]="true">Yes</option>
           <option [value]="false">No</option>
         </select>
@@ -83,7 +83,7 @@
 
       <div>
         <label>ESP:</label>
-        <select [(ngModel)]="vehicle.esp" name="esp" required class="form-control spacer">
+        <select [(ngModel)]="vehicle.esp" name="esp" class="form-control spacer">
           <option [value]="true">Yes</option>
           <option [value]="false">No</option>
         </select>
@@ -91,7 +91,7 @@
 
       <div>
         <label>Central Locking:</label>
-        <select [(ngModel)]="vehicle.centralLocking" name="centralLocking" required class="form-control spacer">
+        <select [(ngModel)]="vehicle.centralLocking" name="centralLocking" class="form-control spacer">
           <option [value]="true">Yes</option>
           <option [value]="false">No</option>
         </select>
@@ -99,7 +99,7 @@
 
       <div>
         <label>Air Conditioning:</label>
-        <select [(ngModel)]="vehicle.airConditioning" name="airConditioning" required class="form-control spacer">
+        <select [(ngModel)]="vehicle.airConditioning" name="airConditioning" class="form-control spacer">
           <option [value]="true">Yes</option>
           <option [value]="false">No</option>
         </select>
@@ -107,7 +107,7 @@
 
       <div>
         <label>Auto Pilot:</label>
-        <select [(ngModel)]="vehicle.autoPilot" name="autoPilot" required class="form-control spacer">
+        <select [(ngModel)]="vehicle.autoPilot" name="autoPilot" class="form-control spacer">
           <option [value]="true">Yes</option>
           <option [value]="false">No</option>
         </select>
@@ -115,7 +115,7 @@
 
       <div className="spacer">
         <label>Production Date:</label>
-        <input [(ngModel)]="vehicle.productionDate" type="date" name="productionDate" required class="form-control spacer" />
+        <input [(ngModel)]="vehicle.productionDate" type="date" name="productionDate" class="form-control spacer" />
       </div>
     </div>
   </div>
@@ -124,21 +124,21 @@
     <div class="col-sm-6">
       <div>
         <label>Images (.png or .jpg):</label>
-        <input [(ngModel)]="vehicle.uploadImages" type="file" name="uploadImages" accept="image/png, image/jpeg" class="spacer" />
-        <input [(ngModel)]="vehicle.uploadImages" type="file" name="uploadImages" accept="image/png, image/jpeg" class="spacer" />
-        <input [(ngModel)]="vehicle.uploadImages" type="file" name="uploadImages" accept="image/png, image/jpeg" class="spacer" />
-        <input [(ngModel)]="vehicle.uploadImages" type="file" name="uploadImages" accept="image/png, image/jpeg" class="spacer" />
-        <input [(ngModel)]="vehicle.uploadImages" type="file" name="uploadImages" accept="image/png, image/jpeg" class="spacer" />
+        <input type="file" name="uploadImages" accept="image/png, image/jpeg" class="spacer" />
+        <input type="file" name="uploadImages" accept="image/png, image/jpeg" class="spacer" />
+        <input type="file" name="uploadImages" accept="image/png, image/jpeg" class="spacer" />
+        <input type="file" name="uploadImages" accept="image/png, image/jpeg" class="spacer" />
+        <input type="file" name="uploadImages" accept="image/png, image/jpeg" class="spacer" />
       </div>
     </div>
 
     <div class="col-sm-6">
       <div className="spacer">
-        <input [(ngModel)]="vehicle.uploadImages" type="file" name="uploadImages" accept="image/png, image/jpeg" class="spacer" />
-        <input [(ngModel)]="vehicle.uploadImages" type="file" name="uploadImages" accept="image/png, image/jpeg" class="spacer" />
-        <input [(ngModel)]="vehicle.uploadImages" type="file" name="uploadImages" accept="image/png, image/jpeg" class="spacer" />
-        <input [(ngModel)]="vehicle.uploadImages" type="file" name="uploadImages" accept="image/png, image/jpeg" class="spacer" />
-        <input [(ngModel)]="vehicle.uploadImages" type="file" name="uploadImages" accept="image/png, image/jpeg" class="spacer" />
+        <input type="file" name="uploadImages" accept="image/png, image/jpeg" class="spacer" />
+        <input type="file" name="uploadImages" accept="image/png, image/jpeg" class="spacer" />
+        <input type="file" name="uploadImages" accept="image/png, image/jpeg" class="spacer" />
+        <input type="file" name="uploadImages" accept="image/png, image/jpeg" class="spacer" />
+        <input type="file" name="uploadImages" accept="image/png, image/jpeg" class="spacer" />
       </div>
 
 

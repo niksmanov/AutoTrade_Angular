@@ -50,7 +50,7 @@ namespace AutoTrade.Controllers
 		}
 
 		[HttpPost("[action]")]
-		public IActionResult AddVehicle(VehicleJsonModel model)
+		public IActionResult AddVehicle([FromForm]VehicleJsonModel model)
 		{
 			if (ModelState.IsValid)
 			{
@@ -61,7 +61,7 @@ namespace AutoTrade.Controllers
 				if (model.UploadImages.Any() && isAdded)
 				{
 					model.Id = id;
-					model.Images = _commonService.SaveImagesInDatabase(model);
+					model.Images = _commonService.SaveImagesOnFileSystem(model);
 					isAdded = _commonService.AddImages(model.Images);
 				}
 				string error = isAdded ? Messages.INFO_ENTITY_ADDED : Messages.ERROR_ADD_PROBLEM;
@@ -73,7 +73,7 @@ namespace AutoTrade.Controllers
 		}
 
 		[HttpPost("[action]")]
-		public IActionResult EditVehicle(VehicleJsonModel model)
+		public IActionResult EditVehicle([FromForm]VehicleJsonModel model)
 		{
 			string userId = _userManager.GetUserId(HttpContext.User);
 			bool isAdmin = User.IsInRole(UserRoles.Admin.ToString());
@@ -86,7 +86,7 @@ namespace AutoTrade.Controllers
 				if (model.UploadImages.Any() && isEdited)
 				{
 					model.Id = id;
-					model.Images = _commonService.SaveImagesInDatabase(model);
+					model.Images = _commonService.SaveImagesOnFileSystem(model);
 					isEdited = _commonService.AddImages(model.Images);
 				}
 				string error = isEdited ? Messages.INFO_ENTITY_EDITED : Messages.ERROR_EDIT_PROBLEM;

@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, AfterContentChecked, Input, Output, EventEmitter } from '@angular/core';
 import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { ResponseModel, AllCommons, VehicleMake, Vehicle, VehicleModel, User } from '../../../../app.interfaces';
@@ -12,7 +12,7 @@ import { VehicleService } from '../../../../services/vehicle.service';
   selector: 'app-vehicle-form',
   templateUrl: './vehicle-form.component.html',
 })
-export class VehicleFormComponent implements OnInit {
+export class VehicleFormComponent implements OnInit, AfterContentChecked {
   @Input() vehicle: Vehicle;
   @Output() onChildSubmit = new EventEmitter();
 
@@ -50,13 +50,18 @@ export class VehicleFormComponent implements OnInit {
       });
   }
 
+  ngAfterContentChecked() {
+    if (this.vehicle) {
+      this.initMakes();
+    }
+  }
+
   initMakes() {
     if (this.vehicle.makeId > 0 && this.vehicle.typeId > 0) {
       this.vehicleService.getVehicleModels(this.vehicle.makeId, this.vehicle.typeId);
       this.store.select(fromRoot.getVehicleState)
         .subscribe(r => {
           this.vehicleModels$ = r.vehicleModels;
-          console.log(this.vehicle);
         });
     }
   }
@@ -74,7 +79,7 @@ export class VehicleFormComponent implements OnInit {
       })
   }
 
-  onSubmit() {
-    this.onChildSubmit.emit(this.vehicle);
+  onSubmit(target) {
+    this.onChildSubmit.emit(new FormData(target));
   }
 }

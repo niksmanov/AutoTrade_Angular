@@ -33,7 +33,8 @@ export interface Vehicle {
   userId?: string;
   url?: string;
   coverImageUrl?: string;
-  uploadImages: Image[];
+  uploadImages: any[];
+  images: Image[];
 
   page: number;
   size: number;

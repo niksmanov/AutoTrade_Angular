@@ -36,8 +36,8 @@ export class AddVehicleComponent implements OnInit {
       });
   }
 
-  onSubmit(vehicle) {
-    vehicle.userId = this.user$.id;
+  onSubmit(vehicle: FormData) {
+    vehicle.append('userId', this.user$.id);
     this.http.post<ResponseModel>('/profile/addvehicle', vehicle)
       .subscribe(r => {
         if (r.succeeded) {

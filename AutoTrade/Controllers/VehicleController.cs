@@ -45,7 +45,8 @@ namespace AutoTrade.Controllers
 			if (id.HasValue)
 				vehicle = _vehicleService.GetVehicle(id.Value);
 
-			return Json(new ResponseJsonModel(true, vehicle));
+			bool succeeded = vehicle != null;
+			return Json(new ResponseJsonModel(succeeded, vehicle));
 		}
 
 		[HttpGet("[action]")]
