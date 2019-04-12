@@ -12,6 +12,7 @@ import { AppComponent } from './app.component';
 import { MainNavigationComponent } from './main-navigation/main-navigation.component';
 import { HomeComponent } from './home/home.component';
 import { SearchComponent } from './search/search.component';
+import { VehicleComponent } from './shared/vehicle/components/vehicle/vehicle.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 
 //Services
@@ -25,9 +26,10 @@ import { CommonService } from './services/common.service';
   declarations: [
     AppComponent,
     HomeComponent,
+    SearchComponent,
+    VehicleComponent,
     MainNavigationComponent,
     NotFoundComponent,
-    SearchComponent,
   ],
   imports: [
     FormsModule,

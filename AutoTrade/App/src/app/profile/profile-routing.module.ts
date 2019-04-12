@@ -4,6 +4,7 @@ import { ContactComponent } from './contact/contact.component';
 import { ChangePasswordComponent } from './change-password/change-password.component';
 import { AddVehicleComponent } from './add-vehicle/add-vehicle.component';
 import { EditVehicleComponent } from './edit-vehicle/edit-vehicle.component';
+import { VehiclesComponent } from './vehicles/vehicles.component';
 
 
 const routes: Routes = [
@@ -11,7 +12,7 @@ const routes: Routes = [
   { path: 'changepassword', component: ChangePasswordComponent },
   { path: 'addvehicle', component: AddVehicleComponent },
   { path: 'editvehicle/:id', component: EditVehicleComponent },
-
+  { path: 'vehicles', component: VehiclesComponent },
 ];
 
 @NgModule({

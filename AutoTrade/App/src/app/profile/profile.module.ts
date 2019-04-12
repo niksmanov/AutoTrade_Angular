@@ -8,6 +8,7 @@ import { ProfileNavigationComponent } from './profile-navigation/profile-navigat
 import { VehicleFormComponent } from '../shared/vehicle/components/vehicle-form/vehicle-form.component';
 import { AddVehicleComponent } from './add-vehicle/add-vehicle.component';
 import { EditVehicleComponent } from './edit-vehicle/edit-vehicle.component';
+import { VehiclesComponent } from './vehicles/vehicles.component';
 
 @NgModule({
   declarations: [
@@ -17,6 +18,7 @@ import { EditVehicleComponent } from './edit-vehicle/edit-vehicle.component';
     ChangePasswordComponent,
     AddVehicleComponent,
     EditVehicleComponent,
+    VehiclesComponent,
   ],
   imports: [
     SharedModule,
