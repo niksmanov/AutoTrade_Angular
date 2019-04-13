@@ -6,18 +6,14 @@ import * as fromRoot from '../../app.reducer';
 import { CommonService } from '../../services/common.service';
 
 @Component({
-  selector: 'app-contact',
-  templateUrl: './contact.component.html',
+  selector: 'app-contacts',
+  templateUrl: './contacts.component.html',
 })
-export class ContactComponent implements OnInit {
+export class ContactsComponent implements OnInit {
   public errors: string[];
   public towns$: Common[];
   public user$: User;
   public sendEmail: boolean = false;
-
-  public townId: number;
-  public address: string;
-  public phoneNumber: string;
 
   constructor(
     private http: HttpClient,
@@ -35,9 +31,6 @@ export class ContactComponent implements OnInit {
     this.store.select(fromRoot.getUserState)
       .subscribe(r => {
         this.user$ = r.user;
-        this.townId = r.user.townId;
-        this.address = r.user.address;
-        this.phoneNumber = r.user.phoneNumber;
       });
   }
 
@@ -52,13 +45,8 @@ export class ContactComponent implements OnInit {
   }
 
   onSubmit() {
-    this.http.post<ResponseModel>('/profile/editinfo',
-      {
-        townId: this.townId,
-        address: this.address,
-        phoneNumber: this.phoneNumber,
-        id: this.user$.id,
-      }).subscribe(r => {
+    this.http.post<ResponseModel>('/profile/editinfo', this.user$)
+      .subscribe(r => {
         this.errors = r.errors;
       })
   }

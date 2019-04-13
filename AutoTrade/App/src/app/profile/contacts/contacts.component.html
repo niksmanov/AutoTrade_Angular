@@ -4,14 +4,14 @@
     <label class="spacer">Username: </label>
     <span class="form-control"> {{user$.userName}}</span>
     <label class="spacer">Town:</label>
-    <select [(ngModel)]="townId" name="TownId" class="form-control">
+    <select [(ngModel)]="user$.townId" name="TownId" class="form-control">
       <option [value]="null">Select Town</option>
       <option *ngFor="let town of towns$" [value]="town.id">{{town.name}}</option>
     </select>
     <label class="spacer">Address:</label>
-    <input [(ngModel)]="address" name="Address" class="form-control" autoComplete="off" />
+    <input [(ngModel)]="user$.address" name="Address" class="form-control" autoComplete="off" />
     <label class="spacer">Phone number:</label>
-    <input [(ngModel)]="phoneNumber" name="PhoneNumber" class="form-control" type="number" autoComplete="off" />
+    <input [(ngModel)]="user$.phoneNumber" name="PhoneNumber" class="form-control" type="number" autoComplete="off" />
     <button type="submit" class="btn btn-primary spacer">Submit</button>
   </form>
 

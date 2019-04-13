@@ -5,7 +5,7 @@ import { UnAuthGuard } from './guards/unauth.guard';
 import { AdminGuard } from './guards/admin.guard';
 
 import { HomeComponent } from './home/home.component';
-import { SearchComponent } from './search/search.component';
+import { SearchFormComponent } from './search/search-form/search-form.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { VehicleComponent } from './shared/vehicle/components/vehicle/vehicle.component';
 
@@ -13,7 +13,7 @@ import { VehicleComponent } from './shared/vehicle/components/vehicle/vehicle.co
 const routes: Routes = [
   { path: '', component: HomeComponent, pathMatch: 'full' },
   { path: '', loadChildren: './account/account.module#AccountModule', canActivate: [UnAuthGuard] },
-  { path: 'search', component: SearchComponent },
+  { path: 'search', component: SearchFormComponent },
   { path: 'vehicle/:id', component: VehicleComponent },
   { path: 'profile', loadChildren: './profile/profile.module#ProfileModule', canActivate: [AuthGuard] },
   { path: 'admin', loadChildren: './administration/administration.module#AdministrationModule', canActivate: [AdminGuard] },

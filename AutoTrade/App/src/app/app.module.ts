@@ -2,8 +2,8 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
-import { FormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
+import { SharedModule } from './shared/shared.module';
 import { StoreModule } from '@ngrx/store';
 import { reducers } from './app.reducer';
 
@@ -11,7 +11,8 @@ import { reducers } from './app.reducer';
 import { AppComponent } from './app.component';
 import { MainNavigationComponent } from './main-navigation/main-navigation.component';
 import { HomeComponent } from './home/home.component';
-import { SearchComponent } from './search/search.component';
+import { SearchFormComponent } from './search/search-form/search-form.component';
+import { SearchResultsComponent } from './search/search-results/search-results.component';
 import { VehicleComponent } from './shared/vehicle/components/vehicle/vehicle.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 
@@ -26,16 +27,17 @@ import { CommonService } from './services/common.service';
   declarations: [
     AppComponent,
     HomeComponent,
-    SearchComponent,
+    SearchFormComponent,
+    SearchResultsComponent,
     VehicleComponent,
     MainNavigationComponent,
     NotFoundComponent,
   ],
   imports: [
-    FormsModule,
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
+    SharedModule,
     StoreModule.forRoot(reducers),
   ],
   providers: [UserService, VehicleService, CommonService],
