@@ -3,13 +3,7 @@ body {
 }
 
 u {
-  cursor: pointer;
-}
-
-a,
-a:hover {
-  color: unset;
-  text-decoration: none;
+  cursor: pointer !important;
 }
 
 img {

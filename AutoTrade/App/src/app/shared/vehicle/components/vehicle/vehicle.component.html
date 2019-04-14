@@ -1,3 +1,57 @@
-<p>
-  vehicle works!
-</p>
+<ng-container *ngIf="vehicle$">
+  <div class="row">
+    <div class="col-sm-7 vehicle-specs spacer">
+      <p class="vehicle-heading"> Vehicle</p>
+      <button *ngIf="user$ && ((user$.id === vehicle$.user.id) || user$.isAdmin)"
+              [routerLink]="['/profile/editvehicle/' + vehicle$.id]" class="btn btn-default vehicle-edit">
+        <span class="glyphicon glyphicon-pencil"></span> Edit
+      </button>
+      <br />
+      <div class="col-sm-6">
+        <p><span><b>Type:</b></span> {{vehicle$.type}}</p>
+        <p><span><b>Make:</b></span> {{vehicle$.make}}</p>
+        <p><span><b>Model:</b></span> {{vehicle$.model}}</p>
+        <p><span><b>Gearbox:</b></span> {{vehicle$.gearboxType}}</p>
+        <p><span><b>Fuel:</b></span> {{vehicle$.fuelType}}</p>
+        <p><span><b>Color:</b></span> {{vehicle$.color}}</p>
+        <p><span><b>Horse Power:</b></span> {{vehicle$.horsePower}}</p>
+        <p><span><b>Cubic Capacity:</b></span> {{vehicle$.cubicCapacity}}</p>
+      </div>
+
+      <div class="col-sm-6">
+        <p><span><b>Airbags:</b></span> {{vehicle$.airbags ? "Yes" : "No"}}</p>
+        <p><span><b>ABS:</b></span> {{vehicle$.abs ? "Yes" : "No"}}</p>
+        <p><span><b>ESP:</b></span> {{vehicle$.esp ? "Yes" : "No"}}</p>
+        <p><span><b>Central Locking:</b></span> {{vehicle$.centralLocking ? "Yes" : "No"}}</p>
+        <p><span><b>Air Conditioning:</b></span> {{vehicle$.airConditioning ? "Yes" : "No"}}</p>
+        <p><span><b>Auto Pilot:</b></span> {{vehicle$.autoPilot ? "Yes" : "No"}}</p>
+        <p><span><b>Production Date:</b> </span> {{vehicle$.displayDate | date}}</p>
+        <p><span><b>Price:</b></span> {{vehicle$.price}} BGN</p>
+        <p><b>Date Created: {{vehicle$.dateCreated | date}} </b></p>
+      </div>
+    </div>
+    <div class="col-sm-4 vehicle-specs seller spacer">
+      <p class="vehicle-heading"> Seller</p>
+      <button *ngIf="user$ && ((user$.id === vehicle$.user.id) || user$.isAdmin)"
+              [routerLink]="['/profile']" class="btn btn-default vehicle-edit">
+        <span class="glyphicon glyphicon-pencil"></span> Edit
+      </button>
+      <br />
+      <p><span><b>Username:</b></span> {{vehicle$.user.userName}}</p>
+      <p><span><b>Address:</b></span> {{vehicle$.user.address}}</p>
+      <p><span><b>Town:</b></span> {{vehicle$.user.townName}}</p>
+      <p><span><b>Email:</b></span> {{vehicle$.user.email}}</p>
+      <p><span><b>Phone:</b></span> {{vehicle$.user.phoneNumber}}</p>
+    </div>
+  </div>
+
+  <div *ngIf="imageSources.length > 0" class="row spacer">
+    <div class="col-sm-12 vehicle-images">
+      <slideshow [height]="'600px'"
+                 [backgroundSize]="'contain'"
+                 [showArrows]="true"
+                 [imageUrls]="imageSources">
+      </slideshow>
+    </div>
+  </div>
+</ng-container>

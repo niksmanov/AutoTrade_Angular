@@ -271,8 +271,8 @@ namespace AutoTrade.Services
 
 			if (Directory.Exists(filePath))
 				Directory.Delete(filePath, true);
-			else
-				Directory.CreateDirectory(filePath);
+
+			Directory.CreateDirectory(filePath);
 
 			foreach (var image in model.UploadImages.Take(10))
 			{

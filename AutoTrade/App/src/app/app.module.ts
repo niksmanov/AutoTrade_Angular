@@ -4,6 +4,7 @@ import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { SharedModule } from './shared/shared.module';
+import { SlideshowModule } from 'ng-simple-slideshow';
 import { StoreModule } from '@ngrx/store';
 import { reducers } from './app.reducer';
 
@@ -38,6 +39,7 @@ import { CommonService } from './services/common.service';
     AppRoutingModule,
     HttpClientModule,
     SharedModule,
+    SlideshowModule,
     StoreModule.forRoot(reducers),
   ],
   providers: [UserService, VehicleService, CommonService],

@@ -14,6 +14,7 @@ import { VehicleService } from '../../../../services/vehicle.service';
 })
 export class VehicleFormComponent implements OnInit, AfterContentChecked {
   @Input() vehicle: Vehicle;
+  @Input() isSubmited: boolean;
   @Output() onChildSubmit = new EventEmitter();
 
   public errors: string[];
@@ -67,6 +68,7 @@ export class VehicleFormComponent implements OnInit, AfterContentChecked {
   }
 
   removeVehicle(id) {
+    this.isSubmited = true;
     this.http.post<ResponseModel>('/profile/removevehicle',
       {
         id: id
@@ -75,11 +77,13 @@ export class VehicleFormComponent implements OnInit, AfterContentChecked {
           this.router.navigateByUrl('/profile/vehicles');
         } else {
           this.errors = r.errors;
+          this.isSubmited = false;
         }
       })
   }
 
   onSubmit(target) {
+    this.isSubmited = true;
     this.onChildSubmit.emit(new FormData(target));
   }
 }

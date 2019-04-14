@@ -13,6 +13,7 @@ import { VehicleService } from '../../services/vehicle.service';
 export class AddVehicleComponent implements OnInit {
   public errors: string[];
   public vehicle$: Vehicle;
+  public isSubmited: boolean = false;
 
   public user$: User;
 
@@ -44,6 +45,7 @@ export class AddVehicleComponent implements OnInit {
           this.router.navigateByUrl(`/vehicle/${r.data}`);
         } else {
           this.errors = r.errors;
+          this.isSubmited = false;
         }
       })
   }

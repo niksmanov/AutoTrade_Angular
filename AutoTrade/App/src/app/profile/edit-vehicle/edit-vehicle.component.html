@@ -1,5 +1,7 @@
 <app-profile-navigation></app-profile-navigation>
 
-<app-vehicle-form [vehicle]="vehicle$" (onChildSubmit)="onSubmit($event)"></app-vehicle-form>
+<app-vehicle-form [vehicle]="vehicle$"
+                  [isSubmited]="isSubmited"
+                  (onChildSubmit)="onSubmit($event)"></app-vehicle-form>
 
 <app-error [errors]="errors"></app-error>
