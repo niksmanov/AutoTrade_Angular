@@ -1,20 +1,22 @@
-<div *ngFor="let vehicle of vehicles" [routerLink]='[vehicle.url]' class="col-sm-6 col-xs-12 vehicle-list-entity">
-  <div class="col-sm-4 col-xs-12" align="center">
-    <img [src]="vehicle.coverImageUrl" />
+<div class="row">
+  <div *ngFor="let vehicle of vehicles" [routerLink]='[vehicle.url]' class="col-sm-6 col-xs-12 vehicle-list-entity">
+    <div class="col-sm-4 col-xs-12" align="center">
+      <img [src]="vehicle.coverImageUrl" />
+    </div>
+    <div class="col-sm-8 col-xs-12">
+      <span><span><b>Make:</b></span> {{vehicle.make}}</span>
+      <span><span><b>Model:</b></span> {{vehicle.model}}</span>
+      <span><span><b>Gearbox:</b></span> {{vehicle.gearboxType}}</span>
+      <span><span><b>Fuel:</b></span> {{vehicle.fuelType}}</span>
+      <span><span><b>Color:</b></span> {{vehicle.color}}</span>
+      <span><span><b>HP:</b></span> {{vehicle.horsePower}}</span>
+      <span><span><b>Cm3:</b></span> {{vehicle.cubicCapacity}}</span>
+      <span><span><b>Prod. Date:</b> </span> {{vehicle.displayDate | date}}</span>
+      <span><span><b>Price:</b></span> {{vehicle.price}} BGN</span>
+    </div>
   </div>
-  <div class="col-sm-8 col-xs-12">
-    <span><span><b>Make:</b></span> {{vehicle.make}}</span>
-    <span><span><b>Model:</b></span> {{vehicle.model}}</span>
-    <span><span><b>Gearbox:</b></span> {{vehicle.gearboxType}}</span>
-    <span><span><b>Fuel:</b></span> {{vehicle.fuelType}}</span>
-    <span><span><b>Color:</b></span> {{vehicle.color}}</span>
-    <span><span><b>HP:</b></span> {{vehicle.horsePower}}</span>
-    <span><span><b>Cm3:</b></span> {{vehicle.cubicCapacity}}</span>
-    <span><span><b>Prod. Date:</b> </span> {{vehicle.displayDate | date}}</span>
-    <span><span><b>Price:</b></span> {{vehicle.price}} BGN</span>
-  </div>
-</div>
 
-<div *ngIf="vehicles.length === 0" align="center">
-  <h4>No Results</h4>
+  <div *ngIf="vehicles.length === 0" align="center">
+    <h4>No Results</h4>
+  </div>
 </div>

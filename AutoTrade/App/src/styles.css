@@ -60,10 +60,3 @@ img {
 .delete-btn-form {
   display: inline;
 }
-
-
-@media (max-width: 767px) {
-  .vehicle-list-entity {
-    width: 100% !important;
-  }
-}
