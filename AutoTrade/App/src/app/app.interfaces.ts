@@ -29,14 +29,15 @@ export interface AllCommons {
 }
 
 export interface Vehicle {
+  page: number;
+  size: number;
+
+
   id: string;
   userId?: string;
   url?: string;
   coverImageUrl?: string;
   images: Image[];
-
-  page: number;
-  size: number;
 
   townId?: number;
   makeId?: number;

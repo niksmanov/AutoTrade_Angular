@@ -57,7 +57,7 @@ namespace AutoTrade.Controllers
 		}
 
 		[HttpPost("[action]")]
-		public IActionResult SearchVehicles(SearchVehiclesJsonModel search)
+		public IActionResult SearchVehicles([FromForm]SearchVehiclesJsonModel search)
 		{
 			var vehicles = _vehicleService.GetVehicles(search.Page, search.Size, null, search);
 			return Json(new ResponseJsonModel(true, vehicles));

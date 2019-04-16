@@ -64,6 +64,8 @@ export class VehicleFormComponent implements OnInit, AfterContentChecked {
         .subscribe(r => {
           this.vehicleModels$ = r.vehicleModels;
         });
+    } else {
+      this.vehicleModels$ = [];
     }
   }
 

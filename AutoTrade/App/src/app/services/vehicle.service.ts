@@ -42,7 +42,7 @@ export class VehicleService {
       })
   }
 
-  getSearchedVehicles(form) {
+  getSearchedVehicles(form: FormData) {
     this.http.post<ResponseModel>(
       '/vehicle/searchvehicles', form)
       .subscribe(r => {

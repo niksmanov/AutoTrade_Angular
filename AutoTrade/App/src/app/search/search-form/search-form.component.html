@@ -1,5 +1,165 @@
-<app-search-results></app-search-results>
+<form *ngIf="allCommons$ && vehicleMakes$" (ngSubmit)="showResult($event.target)">
+  <div class="row">
+    <div class="col-sm-6">
+      <div>
+        <label>Towns:</label>
+        <select name="townId" minlength="1" class="form-control spacer">
+          <option disabled>Select Town</option>
+          <option *ngFor="let town of allCommons$.towns" [value]="town.id">{{town.name}}</option>
+        </select>
+      </div>
 
-<a href="https://github.com/orizens/ngx-infinite-scroll" target="_blank">
-  https://github.com/orizens/ngx-infinite-scroll
-</a>
+      <div>
+        <label>Vehicle Type:</label>
+        <select [(ngModel)]="vehicleTypeId" (change)="initMakes()" name="typeId" minlength="1" class="form-control spacer">
+          <option [value]="null" disabled>Select Vehicle Type</option>
+          <option *ngFor="let type of allCommons$.vehicleTypes" [value]="type.id">{{type.name}}</option>
+        </select>
+      </div>
+
+      <div>
+        <label>Fuel Type:</label>
+        <select name="fuelTypeId" minlength="1" class="form-control spacer">
+          <option disabled>Select Fuel Type</option>
+          <option *ngFor="let type of allCommons$.fuelTypes" [value]="type.id">{{type.name}}</option>
+        </select>
+      </div>
+
+      <div>
+        <label>Gearbox Type:</label>
+        <select name="gearboxTypeId" minlength="1" class="form-control spacer">
+          <option disabled>Select Gearbox Type</option>
+          <option *ngFor="let type of allCommons$.gearboxTypes" [value]="type.id">{{type.name}}</option>
+        </select>
+      </div>
+
+      <label>Makes:</label>
+      <select [(ngModel)]="vehicleMakeId" (change)="initMakes()" name="makeId" minlength="1" class="form-control spacer">
+        <option [value]="null" disabled>Select Make</option>
+        <option *ngFor="let make of vehicleMakes$" [value]="make.id">{{make.name}}</option>
+      </select>
+
+      <div>
+        <label>Models:</label>
+        <select name="modelId" minlength="1" class="form-control spacer">
+          <option disabled>Select Model</option>
+          <option *ngFor="let model of vehicleModels$" [value]="model.id">{{model.name}}</option>
+        </select>
+      </div>
+
+      <div>
+        <label>Colors:</label>
+        <select name="colorId" minlength="1" class="form-control spacer">
+          <option disabled>Select Color</option>
+          <option *ngFor="let color of allCommons$.colors" [value]="color.id">{{color.name}}</option>
+        </select>
+      </div>
+
+      <div class="spacer">
+        <div class="sm-input-first">
+          <label>From horse power:</label>
+          <input type="number" name="fromHorsePower" minlength="1" class="form-control sm" />
+        </div>
+        <div>
+          <label>To horse power:</label>
+          <input type="number" name="toHorsePower" minlength="1" class="form-control sm" />
+        </div>
+      </div>
+
+      <div class="spacer">
+        <div class="sm-input-first">
+          <label>From price (BGN):</label>
+          <input type="number" name="fromPrice" minlength="1" class="form-control sm" />
+        </div>
+        <div>
+          <label>To price (BGN):</label>
+          <input type="number" name="toPrice" minlength="1" class="form-control sm" />
+        </div>
+      </div>
+    </div>
+
+    <div class="col-sm-6">
+      <div className="spacer">
+        <div class="sm-input-first">
+          <label>From cubic capacity (cm3):</label>
+          <input type="number" name="fromCubicCapacity" minlength="50" class="form-control sm spacer" />
+        </div>
+        <div>
+          <label>To cubic capacity (cm3):</label>
+          <input type="number" name="toCubicCapacity" minlength="50" class="form-control sm spacer" />
+        </div>
+      </div>
+
+      <div>
+        <label>Airbags:</label>
+        <select name="airbags" class="form-control spacer">
+          <option disabled>Select Option</option>
+          <option value="true">Yes</option>
+          <option value="false">No</option>
+        </select>
+      </div>
+
+      <div>
+        <label>ABS:</label>
+        <select name="abs" class="form-control spacer">
+          <option disabled>Select Option</option>
+          <option value="true">Yes</option>
+          <option value="false">No</option>
+        </select>
+      </div>
+
+      <div>
+        <label>ESP:</label>
+        <select name="esp" class="form-control spacer">
+          <option disabled>Select Option</option>
+          <option value="true">Yes</option>
+          <option value="false">No</option>
+        </select>
+      </div>
+
+      <div>
+        <label>Central Locking:</label>
+        <select name="centralLocking" class="form-control spacer">
+          <option disabled>Select Option</option>
+          <option value="true">Yes</option>
+          <option value="false">No</option>
+        </select>
+      </div>
+
+      <div>
+        <label>Air Conditioning:</label>
+        <select name="airConditioning" class="form-control spacer">
+          <option disabled>Select Option</option>
+          <option value="true">Yes</option>
+          <option value="false">No</option>
+        </select>
+      </div>
+
+      <div>
+        <label>Auto Pilot:</label>
+        <select name="autoPilot" class="form-control spacer">
+          <option disabled>Select Option</option>
+          <option value="true">Yes</option>
+          <option value="false">No</option>
+        </select>
+      </div>
+
+      <div className="spacer">
+        <div class="sm-input-first">
+          <label>From production date:</label>
+          <input type="date" name="fromProductionDate" class="form-control sm spacer" />
+        </div>
+        <div>
+          <label>To production date:</label>
+          <input type="date" name="toProductionDate" class="form-control sm spacer" />
+        </div>
+      </div>
+      <div align="right" style="max-width: 350px">
+        <br />
+        <button type="submit" class="btn btn-primary spacer" [disabled]="isSubmited">
+          Submit
+        </button>
+      </div>
+    </div>
+  </div>
+</form>
