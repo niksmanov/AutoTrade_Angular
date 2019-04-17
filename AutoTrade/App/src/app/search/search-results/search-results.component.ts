@@ -35,7 +35,7 @@ export class SearchResultsComponent {
   }
 
   showResults(vehicles: Vehicle[]) {
-    this.showVehicles = true;
     this.vehicles$ = vehicles;
+    this.showVehicles = true;
   }
 }

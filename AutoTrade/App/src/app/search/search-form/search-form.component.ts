@@ -21,6 +21,8 @@ export class SearchFormComponent implements OnInit {
 
   public vehicleMakeId = null;
   public vehicleTypeId = null;
+  public isSubmited: boolean = false;
+  public noResults: boolean = false;
 
   constructor(
     private vehicleService: VehicleService,
@@ -55,6 +57,7 @@ export class SearchFormComponent implements OnInit {
   }
 
   onSubmit(target) {
+    this.isSubmited = true;
     this.vehicleService.clearVehiclesState();
 
     let formdata = new FormData(target);
@@ -64,7 +67,15 @@ export class SearchFormComponent implements OnInit {
     this.vehicleService.getSearchedVehicles(formdata);
     this.store.select(fromRoot.getVehicleState)
       .subscribe(r => {
-        this.onChildSubmit.emit(r.vehicles);
+        if (!r.isLoading) {
+          if (r.vehicles.length > 0) {
+            this.noResults = false;
+            this.onChildSubmit.emit(r.vehicles);
+          } else {
+            this.noResults = true;
+          }
+          this.isSubmited = false;
+        }
       });
   }
 }

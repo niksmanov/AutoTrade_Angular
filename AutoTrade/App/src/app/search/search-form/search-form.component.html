@@ -79,7 +79,7 @@
     </div>
 
     <div class="col-sm-6">
-      <div className="spacer">
+      <div class="spacer">
         <div class="sm-input-first">
           <label>From cubic capacity (cm3):</label>
           <input type="number" name="fromCubicCapacity" minlength="50" class="form-control sm spacer" />
@@ -144,7 +144,7 @@
         </select>
       </div>
 
-      <div className="spacer">
+      <div class="spacer">
         <div class="sm-input-first">
           <label>From production date:</label>
           <input type="date" name="fromProductionDate" class="form-control sm spacer" />
@@ -154,11 +154,14 @@
           <input type="date" name="toProductionDate" class="form-control sm spacer" />
         </div>
       </div>
-      <div align="right" style="max-width: 350px">
+      <div class="spacer">
         <br />
-        <button type="submit" class="btn btn-primary spacer">
+        <button type="submit" class="btn btn-primary spacer" [disabled]="isSubmited">
           Submit
         </button>
+        <span *ngIf="noResults" class="alert alert-danger">
+          Your search didn't return any results
+        </span>
       </div>
     </div>
   </div>
