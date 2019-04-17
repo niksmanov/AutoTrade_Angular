@@ -1,4 +1,13 @@
+<button (click)="toggleForm()" class="btn btn-warning spacer">
+  {{showVehicles ? 'Show form' : 'Show all vehicles'}}
+</button>
+<br />
+<br />
 
-<!--<app-vehicle-list [vehicles]="vehicles$"></app-vehicle-list>-->
+<app-search-form *ngIf="!showVehicles"
+                 [page]="page"
+                 [size]="size"
+                 (onChildSubmit)="showResults($event)"></app-search-form>
 
-<app-search-form></app-search-form>
+<app-vehicle-list *ngIf="showVehicles"
+                  [vehicles]="vehicles$"></app-vehicle-list>

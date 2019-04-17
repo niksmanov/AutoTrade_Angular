@@ -1,5 +1,5 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
-import { Vehicle, VehicleMake, VehicleModel, AllCommons } from '../../app.interfaces';
+import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
+import { VehicleMake, VehicleModel, AllCommons } from '../../app.interfaces';
 import { Store } from '@ngrx/store';
 import * as fromRoot from '../../app.reducer';
 import { VehicleService } from '../../services/vehicle.service';
@@ -11,19 +11,16 @@ import { CommonService } from '../../services/common.service';
   templateUrl: './search-form.component.html',
 })
 export class SearchFormComponent implements OnInit {
+  @Input() public page;
+  @Input() public size;
   @Output() onChildSubmit = new EventEmitter();
 
-  public vehicles$: Vehicle[];
   public allCommons$: AllCommons;
   public vehicleMakes$: VehicleMake[];
   public vehicleModels$: VehicleModel[];
 
   public vehicleMakeId = null;
   public vehicleTypeId = null;
-  public isSubmited: boolean = false;
-
-  public page: number = 0;
-  public size: number = 10;
 
   constructor(
     private vehicleService: VehicleService,
@@ -57,20 +54,17 @@ export class SearchFormComponent implements OnInit {
     }
   }
 
-  showResult(target) {
-    this.isSubmited = true;
+  onSubmit(target) {
     this.vehicleService.clearVehiclesState();
 
     let formdata = new FormData(target);
-    formdata.append('page', this.page.toString());
-    formdata.append('size', this.size.toString());
+    formdata.append('page', this.page);
+    formdata.append('size', this.size);
 
     this.vehicleService.getSearchedVehicles(formdata);
     this.store.select(fromRoot.getVehicleState)
       .subscribe(r => {
-        this.vehicles$ = r.vehicles;
-        this.isSubmited = false;
-        this.onChildSubmit.emit(this.vehicles$);
+        this.onChildSubmit.emit(r.vehicles);
       });
   }
 }

@@ -1,4 +1,4 @@
-<form *ngIf="allCommons$ && vehicleMakes$" (ngSubmit)="showResult($event.target)">
+<form *ngIf="allCommons$ && vehicleMakes$" (ngSubmit)="onSubmit($event.target)">
   <div class="row">
     <div class="col-sm-6">
       <div>
@@ -156,7 +156,7 @@
       </div>
       <div align="right" style="max-width: 350px">
         <br />
-        <button type="submit" class="btn btn-primary spacer" [disabled]="isSubmited">
+        <button type="submit" class="btn btn-primary spacer">
           Submit
         </button>
       </div>

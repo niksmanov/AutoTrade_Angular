@@ -32,6 +32,12 @@ export function vehicleReducer(state = initialState, action: actions.VehicleActi
         vehicles: state.vehicles.concat(action.payload),
         isLoading: false,
       };
+    case actions.GET_SEARCHED_VEHICLES:
+      return {
+        ...state,
+        vehicles: state.vehicles.concat(action.payload),
+        isLoading: false,
+      };
     case actions.GET_VEHICLE_MAKES:
       return {
         ...state,
