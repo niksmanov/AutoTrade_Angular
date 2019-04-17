@@ -154,14 +154,11 @@
           <input type="date" name="toProductionDate" class="form-control sm spacer" />
         </div>
       </div>
-      <div class="spacer">
+      <div align="right" style="max-width: 350px">
         <br />
-        <button type="submit" class="btn btn-primary spacer" [disabled]="isSubmited">
+        <button type="submit" class="btn btn-primary spacer">
           Submit
         </button>
-        <span *ngIf="noResults" class="alert alert-danger">
-          Your search didn't return any results
-        </span>
       </div>
     </div>
   </div>

@@ -34,8 +34,13 @@ export class SearchResultsComponent {
     }
   }
 
-  showResults(vehicles: Vehicle[]) {
-    this.vehicles$ = vehicles;
+  showResults(vehiclesForm: FormData) {
     this.showVehicles = true;
+    this.vehicleService.clearVehiclesState();
+    this.vehicleService.getSearchedVehicles(vehiclesForm);
+    this.store.select(fromRoot.getVehicleState)
+      .subscribe(r => {
+        this.vehicles$ = r.vehicles;
+      });
   }
 }

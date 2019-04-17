@@ -5,8 +5,6 @@
 <br />
 
 <app-search-form *ngIf="!showVehicles"
-                 [page]="page"
-                 [size]="size"
                  (onChildSubmit)="showResults($event)"></app-search-form>
 
 <app-vehicle-list *ngIf="showVehicles"

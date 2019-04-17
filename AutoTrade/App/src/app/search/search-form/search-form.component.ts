@@ -1,4 +1,4 @@
-import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { VehicleMake, VehicleModel, AllCommons } from '../../app.interfaces';
 import { Store } from '@ngrx/store';
 import * as fromRoot from '../../app.reducer';
@@ -11,8 +11,6 @@ import { CommonService } from '../../services/common.service';
   templateUrl: './search-form.component.html',
 })
 export class SearchFormComponent implements OnInit {
-  @Input() public page;
-  @Input() public size;
   @Output() onChildSubmit = new EventEmitter();
 
   public allCommons$: AllCommons;
@@ -21,8 +19,6 @@ export class SearchFormComponent implements OnInit {
 
   public vehicleMakeId = null;
   public vehicleTypeId = null;
-  public isSubmited: boolean = false;
-  public noResults: boolean = false;
 
   constructor(
     private vehicleService: VehicleService,
@@ -57,25 +53,10 @@ export class SearchFormComponent implements OnInit {
   }
 
   onSubmit(target) {
-    this.isSubmited = true;
-    this.vehicleService.clearVehiclesState();
-
     let formdata = new FormData(target);
-    formdata.append('page', this.page);
-    formdata.append('size', this.size);
+    formdata.append('page', '0');
+    formdata.append('size', '10');
 
-    this.vehicleService.getSearchedVehicles(formdata);
-    this.store.select(fromRoot.getVehicleState)
-      .subscribe(r => {
-        if (!r.isLoading) {
-          if (r.vehicles.length > 0) {
-            this.noResults = false;
-            this.onChildSubmit.emit(r.vehicles);
-          } else {
-            this.noResults = true;
-          }
-          this.isSubmited = false;
-        }
-      });
+    this.onChildSubmit.emit(formdata);
   }
 }
