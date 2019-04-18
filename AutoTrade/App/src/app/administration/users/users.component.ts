@@ -15,6 +15,7 @@ export class UsersComponent implements OnInit {
   public errors: string[];
   public page: number = 0;
   public size: number = 10;
+  public isLoading: boolean = false;
 
   public users$: User[];
   public search: string;
@@ -30,10 +31,12 @@ export class UsersComponent implements OnInit {
     this.userService.getUsers(this.page, this.size);
     this.store.select(fromRoot.getUserState)
       .subscribe(r => {
+        if (this.users$ && (r.users.length === this.users$.length)) {
+          this.isLoading = false;
+        }
         this.users$ = r.users;
       });
   }
-
 
   changeRole(id, isAdmin) {
     this.http.post<ResponseModel>('/admin/changerole',
@@ -43,6 +46,7 @@ export class UsersComponent implements OnInit {
       }).subscribe(r => {
         this.errors = r.errors;
         if (r.succeeded) {
+          this.page = 0;
           this.userService.clearUsersState();
           this.userService.getUsers(this.page, this.size);
         }
@@ -56,6 +60,7 @@ export class UsersComponent implements OnInit {
       }).subscribe(r => {
         this.errors = r.errors;
         if (r.succeeded) {
+          this.page = 0;
           this.userService.clearUsersState();
           this.userService.getUsers(this.page, this.size);
         }
@@ -63,7 +68,14 @@ export class UsersComponent implements OnInit {
   }
 
   searchUser() {
+    this.page = 0;
     this.userService.clearUsersState();
+    this.userService.getUsers(this.page, this.size, this.search);
+  }
+
+  onScroll() {
+    this.page++;
+    this.isLoading = true;
     this.userService.getUsers(this.page, this.size, this.search);
   }
 }

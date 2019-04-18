@@ -62,7 +62,7 @@
     <div class="col-sm-6">
       <div class="spacer">
         <label>Cubic capacity (cm3):</label>
-        <input [(ngModel)]="vehicle.cubicCapacity" type="number" name="cubicCapacity" minlength="50" class="form-control spacer" />
+        <input [(ngModel)]="vehicle.cubicCapacity" type="number" name="cubicCapacity" minlength="1" class="form-control spacer" />
       </div>
 
       <div>
@@ -115,7 +115,7 @@
 
       <div class="spacer">
         <label>Production Date:</label>
-        <input [(ngModel)]="vehicle.productionDate" type="date" name="productionDate" class="form-control spacer" />
+        <input [(ngModel)]="vehicle.productionDate" type="date" name="productionDate" required class="form-control spacer" />
       </div>
     </div>
   </div>

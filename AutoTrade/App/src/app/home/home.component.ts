@@ -11,9 +11,6 @@ import { VehicleService } from '../services/vehicle.service';
 export class HomeComponent {
   public vehicles$: Vehicle[];
 
-  public page: number = 0;
-  public size: number = 10;
-
   constructor(
     private vehicleService: VehicleService,
     private store: Store<fromRoot.State>,
@@ -21,7 +18,7 @@ export class HomeComponent {
 
   ngOnInit() {
     this.vehicleService.clearVehiclesState();
-    this.vehicleService.getVehicles(this.page, this.size);
+    this.vehicleService.getVehicles(0, 10);
     this.store.select(fromRoot.getVehicleState)
       .subscribe(r => {
         this.vehicles$ = r.vehicles;

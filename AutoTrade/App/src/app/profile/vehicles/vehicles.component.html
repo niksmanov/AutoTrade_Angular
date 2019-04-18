@@ -1,3 +1,10 @@
 <app-profile-navigation></app-profile-navigation>
 
-<app-vehicle-list [vehicles]="vehicles$"></app-vehicle-list>
+<div class="scroll-results"
+     infiniteScroll
+     [infiniteScrollThrottle]="500"
+     (scrolled)="onScroll()">
+
+  <app-vehicle-list [vehicles]="vehicles$"></app-vehicle-list>
+  <div [hidden]="!isLoading" class="loading-app"></div>
+</div>

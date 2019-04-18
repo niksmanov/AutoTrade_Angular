@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
+import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 import { ErrorComponent } from './error/error.component';
 import { VehicleListComponent } from './vehicle/components/vehicle-list/vehicle-list.component';
 
@@ -14,11 +15,13 @@ import { VehicleListComponent } from './vehicle/components/vehicle-list/vehicle-
     RouterModule,
     FormsModule,
     CommonModule,
+    InfiniteScrollModule,
   ],
   exports: [
     RouterModule,
     FormsModule,
     CommonModule,
+    InfiniteScrollModule,
     ErrorComponent,
     VehicleListComponent,
   ],

@@ -87,7 +87,7 @@ namespace AutoTrade.Services
 
 			return query.Skip(page * size)
 						.Take(size)
-						.OrderByDescending(u => u.DateCreated)
+						.OrderByDescending(v => v.DateCreated)
 						.Select(v => Map(v, MapRelatedEntities(v)));
 		}
 

@@ -14,6 +14,7 @@ export class VehiclesComponent implements OnInit {
 
   public page: number = 0;
   public size: number = 10;
+  public isLoading: boolean = false;
 
   constructor(
     private vehicleService: VehicleService,
@@ -30,7 +31,16 @@ export class VehiclesComponent implements OnInit {
     this.vehicleService.getVehicles(this.page, this.size, this.user$.id);
     this.store.select(fromRoot.getVehicleState)
       .subscribe(r => {
+        if (this.vehicles$ && (r.vehicles.length === this.vehicles$.length)) {
+          this.isLoading = false;
+        }
         this.vehicles$ = r.vehicles;
       });
+  }
+
+  onScroll() {
+    this.page++;
+    this.isLoading = true;
+    this.vehicleService.getVehicles(this.page, this.size, this.user$.id);
   }
 }

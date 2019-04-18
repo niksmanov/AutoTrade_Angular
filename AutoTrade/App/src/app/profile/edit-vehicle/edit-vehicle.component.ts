@@ -27,10 +27,7 @@ export class EditVehicleComponent implements OnInit {
     this.vehicleService.getVehicle(this.route.snapshot.params.id);
     this.store.select(fromRoot.getVehicleState)
       .subscribe(r => {
-        if (r.vehicle) {
-          this.vehicle$ = r.vehicle;
-          this.vehicle$.productionDate = r.vehicle.displayDate;
-        }
+        this.vehicle$ = r.vehicle;
       });
   }
 

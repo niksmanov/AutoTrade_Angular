@@ -5,7 +5,6 @@ import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { SharedModule } from './shared/shared.module';
 import { SlideshowModule } from 'ng-simple-slideshow';
-import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 import { StoreModule } from '@ngrx/store';
 import { reducers } from './app.reducer';
 
@@ -41,7 +40,6 @@ import { CommonService } from './services/common.service';
     HttpClientModule,
     SharedModule,
     SlideshowModule,
-    InfiniteScrollModule,
     StoreModule.forRoot(reducers),
   ],
   providers: [UserService, VehicleService, CommonService],

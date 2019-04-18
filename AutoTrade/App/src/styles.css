@@ -48,6 +48,10 @@ img {
   margin: 10px;
 }
 
+.scroll-results {
+  min-height: 100vh;
+}
+
 .admin-entity {
   float: left;
 }
@@ -56,4 +60,3 @@ img {
     margin-left: 50px;
     margin-right: 10px;
   }
-

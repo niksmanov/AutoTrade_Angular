@@ -53,6 +53,7 @@ export class VehicleFormComponent implements OnInit, AfterContentChecked {
 
   ngAfterContentChecked() {
     if (this.vehicle) {
+      this.vehicle.productionDate = this.vehicle.displayDate;
       this.initMakes();
     }
   }
