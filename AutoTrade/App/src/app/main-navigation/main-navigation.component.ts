@@ -16,8 +16,8 @@ export class MainNavigationComponent implements OnInit {
     private store: Store<fromRoot.State>,
   ) { }
 
-  public isAuth$: Observable<boolean>;
-  public isAdmin$: Observable<boolean>;
+  isAuth$: Observable<boolean>;
+  isAdmin$: Observable<boolean>;
 
   ngOnInit() {
     this.isAuth$ = this.store.select(fromRoot.getIsAuth);

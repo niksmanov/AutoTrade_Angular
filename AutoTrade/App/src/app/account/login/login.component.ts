@@ -7,11 +7,11 @@ import { ResponseModel } from '../../app.interfaces';
   templateUrl: './login.component.html',
 })
 export class LoginComponent {
-  public errors: string[];
+  errors: string[];
 
-  public email: string;
-  public password: string;
-  public rememberMe: boolean = true;
+  email: string;
+  password: string;
+  rememberMe: boolean = true;
 
   constructor(private http: HttpClient) { }
 

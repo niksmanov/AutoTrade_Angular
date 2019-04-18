@@ -7,14 +7,12 @@ import { HttpClient } from '@angular/common/http';
   templateUrl: './change-password.component.html',
 })
 export class ChangePasswordComponent {
-  public errors: string[];
-  public email: string;
-  public oldPassword: string;
-  public password: string;
+  errors: string[];
+  email: string;
+  oldPassword: string;
+  password: string;
 
-  constructor(
-    private http: HttpClient,
-  ) { }
+  constructor(private http: HttpClient) { }
 
   onSubmit() {
     this.http.post<ResponseModel>('/user/resetpassword',

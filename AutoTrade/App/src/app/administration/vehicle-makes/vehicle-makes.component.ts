@@ -10,10 +10,10 @@ import { VehicleService } from '../../services/vehicle.service';
   templateUrl: './vehicle-makes.component.html',
 })
 export class VehicleMakesComponent implements OnInit {
-  public errors: string[];
-  public makes$: VehicleMake[];
+  errors: string[];
+  makes$: VehicleMake[];
 
-  public name: string;
+  name: string;
 
   constructor(
     private http: HttpClient,
@@ -38,7 +38,7 @@ export class VehicleMakesComponent implements OnInit {
         if (r.succeeded) {
           this.name = '';
           this.vehicleService.getVehicleMakes();
-        } 
+        }
       })
   }
 
@@ -50,7 +50,7 @@ export class VehicleMakesComponent implements OnInit {
         this.errors = r.errors;
         if (r.succeeded) {
           this.vehicleService.getVehicleMakes();
-        } 
+        }
       })
   }
 }

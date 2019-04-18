@@ -11,11 +11,11 @@ import { VehicleService } from '../../services/vehicle.service';
   templateUrl: './add-vehicle.component.html',
 })
 export class AddVehicleComponent implements OnInit {
-  public errors: string[];
-  public vehicle$: Vehicle;
-  public isSubmited: boolean = false;
+  errors: string[];
+  vehicle$: Vehicle;
+  isSubmited: boolean = false;
 
-  public user$: User;
+  user$: User;
 
   constructor(
     private http: HttpClient,

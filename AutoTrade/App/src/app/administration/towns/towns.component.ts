@@ -10,10 +10,10 @@ import { CommonService } from '../../services/common.service';
   templateUrl: './towns.component.html',
 })
 export class TownsComponent implements OnInit {
-  public errors: string[];
-  public towns$: Common[];
+  errors: string[];
+  towns$: Common[];
 
-  public name: string;
+  name: string;
 
   constructor(
     private http: HttpClient,
@@ -38,7 +38,7 @@ export class TownsComponent implements OnInit {
         if (r.succeeded) {
           this.name = '';
           this.commonService.getTowns();
-        } 
+        }
       })
   }
 
@@ -50,7 +50,7 @@ export class TownsComponent implements OnInit {
         this.errors = r.errors;
         if (r.succeeded) {
           this.commonService.getTowns();
-        } 
+        }
       })
   }
 }

@@ -12,14 +12,14 @@ import { CommonService } from '../../services/common.service';
   templateUrl: './vehicle-models.component.html',
 })
 export class VehicleModelsComponent implements OnInit {
-  public errors: string[];
-  public makes$: VehicleMake[];
-  public models$: VehicleModel[];
-  public types$: Common[];
+  errors: string[];
+  makes$: VehicleMake[];
+  models$: VehicleModel[];
+  types$: Common[];
 
-  public name: string;
-  public makeId: number = 0;
-  public typeId: number = 0;
+  name: string;
+  makeId: number = 0;
+  typeId: number = 0;
 
   constructor(
     private http: HttpClient,

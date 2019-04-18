@@ -7,9 +7,9 @@ import { ResponseModel } from '../../app.interfaces';
   templateUrl: './forgot-password.component.html',
 })
 export class ForgotPasswordComponent {
-  public errors: string[];
+  errors: string[];
 
-  public email: string;
+  email: string;
 
   constructor(private http: HttpClient) { }
 

@@ -10,10 +10,10 @@ import { CommonService } from '../../services/common.service';
   templateUrl: './contacts.component.html',
 })
 export class ContactsComponent implements OnInit {
-  public errors: string[];
-  public towns$: Common[];
-  public user$: User;
-  public sendEmail: boolean = false;
+  errors: string[];
+  towns$: Common[];
+  user$: User;
+  sendEmail: boolean = false;
 
   constructor(
     private http: HttpClient,

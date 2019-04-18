@@ -13,12 +13,12 @@ import { CommonService } from '../../services/common.service';
 export class SearchFormComponent implements OnInit {
   @Output() onChildSubmit = new EventEmitter();
 
-  public allCommons$: AllCommons;
-  public vehicleMakes$: VehicleMake[];
-  public vehicleModels$: VehicleModel[];
+  allCommons$: AllCommons;
+  vehicleMakes$: VehicleMake[];
+  vehicleModels$: VehicleModel[];
 
-  public vehicleMakeId = null;
-  public vehicleTypeId = null;
+  vehicleMakeId = null;
+  vehicleTypeId = null;
 
   constructor(
     private vehicleService: VehicleService,

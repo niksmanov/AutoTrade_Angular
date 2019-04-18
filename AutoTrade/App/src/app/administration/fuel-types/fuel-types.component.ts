@@ -10,10 +10,10 @@ import { CommonService } from '../../services/common.service';
   templateUrl: './fuel-types.component.html',
 })
 export class FuelTypesComponent implements OnInit {
-  public errors: string[];
-  public types$: Common[];
+  errors: string[];
+  types$: Common[];
 
-  public name: string;
+  name: string;
 
   constructor(
     private http: HttpClient,
@@ -38,7 +38,7 @@ export class FuelTypesComponent implements OnInit {
         if (r.succeeded) {
           this.name = '';
           this.commonService.getFuelTypes();
-        } 
+        }
       })
   }
 
@@ -50,7 +50,7 @@ export class FuelTypesComponent implements OnInit {
         this.errors = r.errors;
         if (r.succeeded) {
           this.commonService.getFuelTypes();
-        } 
+        }
       })
   }
 }

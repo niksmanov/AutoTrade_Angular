@@ -9,12 +9,12 @@ import { VehicleService } from '../../services/vehicle.service';
   templateUrl: './vehicles.component.html',
 })
 export class VehiclesComponent implements OnInit {
-  public vehicles$: Vehicle[];
-  public user$: User;
+  vehicles$: Vehicle[];
+  user$: User;
 
-  public page: number = 0;
-  public size: number = 10;
-  public isLoading: boolean = false;
+  page: number = 0;
+  size: number = 10;
+  isLoading: boolean = false;
 
   constructor(
     private vehicleService: VehicleService,

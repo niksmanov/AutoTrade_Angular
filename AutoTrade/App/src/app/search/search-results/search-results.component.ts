@@ -11,11 +11,14 @@ import { VehicleService } from '../../services/vehicle.service';
 
 
 export class SearchResultsComponent {
-  public page: number = 0;
-  public size: number = 10;
+  page: number = 0;
+  size: number = 10;
+  isLoading: boolean = false;
 
-  public showVehicles: boolean = false;
-  public vehicles$: Vehicle[];
+  vehicles$: Vehicle[];
+  showVehicles: boolean = false;
+  useSearch: boolean = false;
+  vehiclesForm: FormData;
 
   constructor(
     private vehicleService: VehicleService,
@@ -23,24 +26,49 @@ export class SearchResultsComponent {
   ) { }
 
   toggleForm() {
+    this.page = 0;
     this.showVehicles = !this.showVehicles;
     if (this.showVehicles) {
       this.vehicleService.clearVehiclesState();
       this.vehicleService.getVehicles(this.page, this.size);
       this.store.select(fromRoot.getVehicleState)
         .subscribe(r => {
+          if (this.vehicles$ && (r.vehicles.length === this.vehicles$.length)) {
+            this.isLoading = false;
+          }
           this.vehicles$ = r.vehicles;
         });
+    } else {
+      this.useSearch = false;
     }
   }
 
-  showResults(vehiclesForm: FormData) {
+  submitSearch(vehiclesForm: FormData) {
+    this.page = 0;
     this.showVehicles = true;
+    this.useSearch = true;
+
+    this.vehiclesForm = vehiclesForm;
     this.vehicleService.clearVehiclesState();
     this.vehicleService.getSearchedVehicles(vehiclesForm);
     this.store.select(fromRoot.getVehicleState)
       .subscribe(r => {
+        if (this.vehicles$ && (r.vehicles.length === this.vehicles$.length)) {
+          this.isLoading = false;
+        }
         this.vehicles$ = r.vehicles;
       });
+  }
+
+  onScroll() {
+    this.page++;
+    this.isLoading = true;
+
+    if (this.useSearch) {
+      this.vehiclesForm.set('page', this.page.toString());
+      this.vehicleService.getSearchedVehicles(this.vehiclesForm);
+    } else {
+      this.vehicleService.getVehicles(this.page, this.size);
+    }
   }
 }

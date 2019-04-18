@@ -10,10 +10,10 @@ import { CommonService } from '../../services/common.service';
   templateUrl: './vehicle-types.component.html',
 })
 export class VehicleTypesComponent implements OnInit {
-  public errors: string[];
-  public types$: Common[];
+  errors: string[];
+  types$: Common[];
 
-  public name: string;
+  name: string;
 
   constructor(
     private http: HttpClient,
@@ -38,7 +38,7 @@ export class VehicleTypesComponent implements OnInit {
         if (r.succeeded) {
           this.name = '';
           this.commonService.getVehicleTypes();
-        } 
+        }
       })
   }
 
@@ -50,7 +50,7 @@ export class VehicleTypesComponent implements OnInit {
         this.errors = r.errors;
         if (r.succeeded) {
           this.commonService.getVehicleTypes();
-        } 
+        }
       })
   }
 }

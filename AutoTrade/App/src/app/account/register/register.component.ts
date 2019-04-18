@@ -7,15 +7,13 @@ import { ResponseModel } from '../../app.interfaces';
   templateUrl: './register.component.html',
 })
 export class RegisterComponent {
-  public errors: string[];
+  errors: string[];
 
-  public email: string;
-  public username: string;
-  public password: string;
+  email: string;
+  username: string;
+  password: string;
 
-  constructor(
-    private http: HttpClient,
-  ) { }
+  constructor(private http: HttpClient) { }
 
   onSubmit() {
     this.http.post<ResponseModel>('/user/register',

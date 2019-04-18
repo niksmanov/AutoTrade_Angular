@@ -5,7 +5,14 @@
 <br />
 
 <app-search-form *ngIf="!showVehicles"
-                 (onChildSubmit)="showResults($event)"></app-search-form>
+                 (onChildSubmit)="submitSearch($event)"></app-search-form>
 
-<app-vehicle-list *ngIf="showVehicles"
-                  [vehicles]="vehicles$"></app-vehicle-list>
+<div *ngIf="showVehicles" class="scroll-results"
+     infiniteScroll
+     [infiniteScrollThrottle]="500"
+     (scrolled)="onScroll()">
+
+  <app-vehicle-list [vehicles]="vehicles$"></app-vehicle-list>
+
+  <div [hidden]="!isLoading" class="loading-app"></div>
+</div>

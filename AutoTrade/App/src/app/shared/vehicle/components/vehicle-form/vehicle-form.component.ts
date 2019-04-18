@@ -17,12 +17,12 @@ export class VehicleFormComponent implements OnInit, AfterContentChecked {
   @Input() isSubmited: boolean;
   @Output() onChildSubmit = new EventEmitter();
 
-  public errors: string[];
-  public allCommons$: AllCommons;
-  public vehicleMakes$: VehicleMake[];
-  public vehicleModels$: VehicleModel[];
+  errors: string[];
+  allCommons$: AllCommons;
+  vehicleMakes$: VehicleMake[];
+  vehicleModels$: VehicleModel[];
 
-  public user$: User;
+  user$: User;
 
   constructor(
     private http: HttpClient,

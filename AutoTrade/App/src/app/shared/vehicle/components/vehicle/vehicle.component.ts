@@ -11,9 +11,9 @@ import { VehicleService } from '../../../../services/vehicle.service';
   styleUrls: ['./vehicle.component.css']
 })
 export class VehicleComponent implements OnInit {
-  public vehicle$: Vehicle;
-  public user$: User;
-  public imageSources: string[];
+  vehicle$: Vehicle;
+  user$: User;
+  imageSources: string[];
 
   constructor(
     private vehicleService: VehicleService,

@@ -12,13 +12,13 @@ import { UserService } from '../../services/user.service';
 
 
 export class UsersComponent implements OnInit {
-  public errors: string[];
-  public page: number = 0;
-  public size: number = 10;
-  public isLoading: boolean = false;
+  errors: string[];
+  page: number = 0;
+  size: number = 10;
+  isLoading: boolean = false;
 
-  public users$: User[];
-  public search: string;
+  users$: User[];
+  search: string;
 
   constructor(
     private http: HttpClient,

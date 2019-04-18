@@ -10,10 +10,10 @@ import { CommonService } from '../../services/common.service';
   templateUrl: './colors.component.html',
 })
 export class ColorsComponent implements OnInit {
-  public errors: string[];
-  public colors$: Common[];
+  errors: string[];
+  colors$: Common[];
 
-  public name: string;
+  name: string;
 
   constructor(
     private http: HttpClient,
@@ -38,7 +38,7 @@ export class ColorsComponent implements OnInit {
         if (r.succeeded) {
           this.name = '';
           this.commonService.getColors();
-        } 
+        }
       })
   }
 
@@ -50,7 +50,7 @@ export class ColorsComponent implements OnInit {
         this.errors = r.errors;
         if (r.succeeded) {
           this.commonService.getColors();
-        } 
+        }
       })
   }
 }

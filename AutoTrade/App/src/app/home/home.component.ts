@@ -9,7 +9,7 @@ import { VehicleService } from '../services/vehicle.service';
   templateUrl: './home.component.html',
 })
 export class HomeComponent {
-  public vehicles$: Vehicle[];
+  vehicles$: Vehicle[];
 
   constructor(
     private vehicleService: VehicleService,
