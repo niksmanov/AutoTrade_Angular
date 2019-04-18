@@ -10,4 +10,4 @@ Auto Trade is an ASP.NET Core MVC application with Angular and NgRx for selling 
 * Angular 7.2
 * NgRx 7.3
 
-:rocket: [**Website of the application**](https://autotrade-bulgaria.herokuapp.com/)
+:rocket: [**Website of the application**](https://autotrade-bulgaria2.herokuapp.com/)
