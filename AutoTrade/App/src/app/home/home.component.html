@@ -1,6 +1,7 @@
 <h3 style="text-align:center; font-weight: 800"> Last added vehicles </h3>
 <br />
-<app-vehicle-list [vehicles]="vehicles$"></app-vehicle-list>
+<app-vehicle-list [hidden]="serverIsLoading" [vehicles]="vehicles$"></app-vehicle-list>
+<div [hidden]="!serverIsLoading" class="loading-app"></div>
 <br />
 <p style="text-align:center" class="spacer">
   <b><a href="https://gitlab.com/niksmanov/autotrade" target="_blank" style="color: #000000;">Project Repository</a></b>

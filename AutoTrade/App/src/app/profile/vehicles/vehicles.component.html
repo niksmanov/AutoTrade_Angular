@@ -5,6 +5,7 @@
      [infiniteScrollThrottle]="500"
      (scrolled)="onScroll()">
 
-  <app-vehicle-list [vehicles]="vehicles$"></app-vehicle-list>
+  <app-vehicle-list [hidden]="serverIsLoading" [vehicles]="vehicles$"></app-vehicle-list>
+  <div [hidden]="!serverIsLoading" class="loading-app"></div>
   <div [hidden]="!isLoading" class="loading-app"></div>
 </div>

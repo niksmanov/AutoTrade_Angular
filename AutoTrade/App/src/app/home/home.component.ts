@@ -10,6 +10,7 @@ import { VehicleService } from '../services/vehicle.service';
 })
 export class HomeComponent {
   vehicles$: Vehicle[];
+  serverIsLoading: boolean = false;
 
   constructor(
     private vehicleService: VehicleService,
@@ -21,6 +22,7 @@ export class HomeComponent {
     this.vehicleService.getVehicles(0, 10);
     this.store.select(fromRoot.getVehicleState)
       .subscribe(r => {
+        this.serverIsLoading = r.isLoading;
         this.vehicles$ = r.vehicles;
       });
   }

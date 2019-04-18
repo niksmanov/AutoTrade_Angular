@@ -14,6 +14,7 @@ export class SearchResultsComponent {
   page: number = 0;
   size: number = 10;
   isLoading: boolean = false;
+  serverIsLoading: boolean = false;
 
   vehicles$: Vehicle[];
   showVehicles: boolean = false;
@@ -33,6 +34,7 @@ export class SearchResultsComponent {
       this.vehicleService.getVehicles(this.page, this.size);
       this.store.select(fromRoot.getVehicleState)
         .subscribe(r => {
+          this.serverIsLoading = r.isLoading;
           if (this.vehicles$ && (r.vehicles.length === this.vehicles$.length)) {
             this.isLoading = false;
           }
@@ -53,6 +55,7 @@ export class SearchResultsComponent {
     this.vehicleService.getSearchedVehicles(vehiclesForm);
     this.store.select(fromRoot.getVehicleState)
       .subscribe(r => {
+        this.serverIsLoading = r.isLoading;
         if (this.vehicles$ && (r.vehicles.length === this.vehicles$.length)) {
           this.isLoading = false;
         }

@@ -241,7 +241,7 @@ namespace AutoTrade.Services
 							.Where(i => i.VehicleId == vehicleId)
 							.AsNoTracking()
 							.Select(i => Map(i,
-							new ImageJsonModel { Url = UrlHelper.GenerateVehicleImageUrl(vehicleId, i.Name) }));
+							new ImageJsonModel { Url = UrlHelper.GenerateVehicleImageUrl(vehicleId, i.Data) }));
 		}
 
 

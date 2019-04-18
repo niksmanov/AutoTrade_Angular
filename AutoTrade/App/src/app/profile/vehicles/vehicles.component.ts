@@ -15,6 +15,7 @@ export class VehiclesComponent implements OnInit {
   page: number = 0;
   size: number = 10;
   isLoading: boolean = false;
+  serverIsLoading: boolean = false;
 
   constructor(
     private vehicleService: VehicleService,
@@ -31,6 +32,7 @@ export class VehiclesComponent implements OnInit {
     this.vehicleService.getVehicles(this.page, this.size, this.user$.id);
     this.store.select(fromRoot.getVehicleState)
       .subscribe(r => {
+        this.serverIsLoading = r.isLoading;
         if (this.vehicles$ && (r.vehicles.length === this.vehicles$.length)) {
           this.isLoading = false;
         }
